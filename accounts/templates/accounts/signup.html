@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-panel {
+            width: 50%;
+            background-color: #F59891;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .left-panel h2 {
+            font-size: 28px;
+            margin-bottom: 0;
+        }
+
+        .left-panel p {
+            margin: 5px 0;
+        }
+
+        .right-panel {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .full-width {
+            grid-column: span 2;
+            text-align: center;
+        }
+
+        button {
+            background-color: #000;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .top-right-links {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 14px;
+        }
+
+        .top-right-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel">
+        <img src="https://img.icons8.com/ios-filled/100/ffffff/add-user-group-man-man.png" alt="User Icon"/>
+        <h2>SKY Health Check</h2>
+        <p>Team health matters</p>
+        <p><strong>Track, Visualise, and Grow!</strong></p>
+    </div>
+
+    <div class="right-panel">
+        <div class="top-right-links">
+            <a href="/admin/login/">Admin Login</a>
+        </div>
+
+        <h1>Create Account</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.username.label_tag }}{{ form.username }}
+            {{ form.email.label_tag }}{{ form.email }}
+            {{ form.password1.label_tag }}{{ form.password1 }}
+            {{ form.password2.label_tag }}{{ form.password2 }}
+
+            <div class="full-width">
+                <button type="submit">Sign up</button>
+            </div>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+        </div>
+    </div>
+</body>
+</html>
