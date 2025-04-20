@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Team</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .sidepanel {
+            width: 200px;
+            height: 100vh;
+            background-color: #c8deda;
+            position: fixed;
+            border: 1px solid black;
+        }
+
+        .sidepanel ul {
+            margin: 50px 20px; 
+            padding: 0;
+            font-size: 14px;
+            font-family: Arial;
+        }
+
+        .sidepanel li {
+            margin: 20px 0;
+            list-style: none;
+        }
+
+        .sidepanel a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .sidepanel a:hover {
+            text-decoration: underline;
+        }
+
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .settings{
+            position: absolute;
+            bottom: 50px; 
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .logout a, .settings a{
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .page {
+            margin-left: 200px;
+            padding: 100px;
+            background-color: #B9D8F3;
+            min-height: 120px;
+        }
+        
+        .page h1 {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .page h3{
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .teamselection{
+            text-align: center;
+        }
+
+        .teamselection select {
+            border: 2px solid #333;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+        }
+
+        .buttons{
+            display: flex;
+            margin: 100px auto auto;
+            gap: 100px;
+            width: 350px; 
+        }
+
+        .buttons button {
+            margin-left: 90px;
+            padding: 20px 30px;
+            font-size: 16px;
+            background-color: #073284;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class = "sidepanel">
+    <h3 style = "text-align: center; padding-top: 20px;">Sky Health Check</h3>
+    <ul>
+        <li><a href="{% url 'dashboard' %}"><b>Dashboard</b></a></li>
+        <li><a href="{% url 'team' %}"><b>Rating Health</b></a></li>
+        <li>Card 1</li>
+        <li>Card 2</li>
+        <li>Card 3</li>
+        <!--<li><a href="{% url 'summary' %}"><b>Summary</b></a></li> -->
+    </ul>
+
+    <ul class = "settings">
+        <li><a href="{% url 'settings' %}"><b>Settings</b></a></li>
+    </ul>
+
+    <ul class = "logout">
+        <li><a href="{% url 'signup' %}"><b>Log out</b></a></li>
+    </ul>
+</div>
+
+<div class = "page">
+    <h1>Team</h1>
+    <h3><b>Select Your Team Below</b></h3>
+
+    <div class = "teamselection">
+        <select>
+            <option>Choose your team</option>
+            <option>Team 1</option>
+            <option>Team 2</option>
+            <option>Team 3</option>
+            <option>Team 4</option>
+        </select>
+    </div>
+
+</div>
+
+<div class = "buttons">
+    <a href ="{% url 'dashboard' %}" class="backbutton">
+        <button>Back</button>
+    </a>
+    <a href = "{% url 'instructions' %}" class = "nextbutton">
+        <button>Next</button>
+    </a>
+</div>
+</body>
+</html>

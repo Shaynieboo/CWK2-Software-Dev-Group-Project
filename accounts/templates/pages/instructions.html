@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Instructions</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .sidepanel {
+            width: 200px;
+            height: 100vh;
+            background-color: #c8deda;
+            position: fixed;
+        }
+
+        .sidepanel ul {
+            margin: 50px 20px; 
+            padding: 0;
+            font-size: 14px;
+            font-family: Arial;
+        }
+
+        .sidepanel li {
+            margin: 20px 0;
+            list-style: none;
+        }
+
+        .sidepanel a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .sidepanel a:hover {
+            text-decoration: underline;
+        }
+
+        .sidepanel a[href = "Instructions.html"]{
+            color: #9510AC;
+            text-decoration: underline;
+
+        }
+        
+        .page {
+            margin-left: 200px;
+            padding: 100px;
+            background-color: #B9D8F3;
+            min-height: 120px;
+            text-align: center;
+        }
+        
+        .page h1 {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .page h3{
+            margin-top: 50px;
+        
+        }
+
+        .instructions{
+            
+            padding: 5px;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 30x;
+        }
+
+        .options{
+            margin-top: 80px;
+            gap: 200px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .redbutton, .yellowbutton, .greenbutton{
+            margin: 4px 2px;
+            padding: 20px 80px;
+            cursor: pointer;
+
+
+        }
+
+        .redbutton{
+            background-color:#de5b4f;
+        }
+
+        .yellowbutton{
+            background-color:#f7e176;
+        }
+        
+        .greenbutton{
+            background-color:#04AA6D;
+        }
+
+        .buttons{
+            display: flex;
+            justify-content: center;
+            margin: 100px auto auto;
+            gap: 100px;
+            width: 350px; 
+        }
+
+        .buttons button {
+            margin-left: 100px;
+            padding: 20px 30px;
+            font-size: 16px;
+            background-color: #073284;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class = "sidepanel">
+    <h3 style = "text-align: center; padding-top: 20px;">Sky Health Check</h3>
+    <ul>
+        <li><a href="Dashboard.html"><b>Dashboard</b></a></li>
+        <li><a href="Team.html"><b>Rating Health</b></a></li>
+        <li><a href="Team.html"><b>Team</b></a></li>
+        <li><a href="Instructions.html"><b>Instructions</b></a></li>
+        <li>Card 1</li>
+        <li>Card 2</li>
+        <li>Card 3</li>
+        <li>Card 4</li>
+        <li>Card 5</li>
+        <li>Card 6</li>
+        <li>Card 7</li>
+        <li><a href="Summary.html"><b>Summary</b></a></li>
+    </ul>
+</div>
+
+<div class = "page">
+    <h1>Instructions</h1>
+    <div class = "instructions">
+        <p>
+            Voting Instructions:<br>Each team member votes on the categories using one of these indicators:
+            <br>🟢 Green 
+            <br>🟡 Yellow
+            <br>🔴 Red
+        </p>
+    </div>
+
+    <div class = "options">
+        <button class = "redbutton">Red</button>
+        <button class = "yellowbutton">Yellow</button>
+        <button class = "greenbutton">Green</button>
+    </div>
+</div>
+
+<div class = "buttons">
+    <a href = "Team.html">
+        <button>Back</button>
+    </a>
+    <a href = "Instructions.html">
+        <button>Next</button>
+    </a>
+</div>
+</body>
+</html>
