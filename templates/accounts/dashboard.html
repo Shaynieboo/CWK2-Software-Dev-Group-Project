@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Dashboard</title>
+    <style>
+
+        body {
+            margin: 0;
+        }
+        .sidepanel {
+            width: 200px;
+            height: 100vh;
+            background-color: #c8deda;
+            position: fixed;
+        }
+
+        .sidepanel ul {
+            margin: 50px 20px; 
+            padding: 0;
+            font-size: 14px;
+            font-family: Arial;
+        }
+
+        .sidepanel li {
+            margin: 20px 0;
+            list-style: none;
+        }
+
+        .sidepanel a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .sidepanel a:hover {
+            text-decoration: underline;
+        }
+
+        .sidepanel a[href = "Dashboard.html"]{
+            color: #9510AC;
+            text-decoration: underline;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .settings{
+            position: absolute;
+            bottom: 50px; 
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .logout a, .settings a{
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+        .page {
+            margin-left: 240px;
+            padding: 20px
+        }
+
+        .healthcheck{
+            display: flex;
+            gap: 60px;
+            margin-top: 80px;
+            margin-left: 220px;
+            padding-left: 30px;
+        }
+
+        .option {
+            background-color: #f0f8ff;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .option img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .button{
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 30px;
+            border: 1px solid black;
+        }
+
+        .container{
+            background-color: #d3d3f1 ;
+            padding: 20px 80px;
+        } 
+    </style>
+</head>
+
+
+<body>
+
+<div class = "sidepanel">
+    <h3 style = "text-align: center; padding-top: 20px;">Sky Health Check</h3>
+    <ul>
+        <li><a href="Dashboard.html"><b>Dashboard</b></a></li>
+        <li><a href="Team.html"><b>Rating Health</b></a></li>
+        <li><a href="Summary.html"><b>Summary</b></a></li>
+    </ul>
+
+    <ul class = "settings">
+        <li><a href="Settings.html"><b>Settings</b></a></li>
+    </ul>
+
+    <ul class = "logout">
+        <li><a href="logout.html"><b>Log out</b></a></li>
+    </ul>
+</div>
+
+<div class = "page">
+    <header>
+        <h3>Dashboard</h3>
+        <h1><b>Welcome to Sky Health Check</b></h1>
+        <p>Want to say something about your health?</p>
+    </header>
+</div>
+
+<div class = "container">
+    <div class = "healthcheck">
+        <div class = "option"> 
+            <h3>Health Check One</h3>
+            <img class = "image" src = "check1.svg" alt = "icon">
+            <a href = "Team.html" class = "button">Start</a>
+        </div>
+
+        <div class = "option"> 
+            <h3>Health Check Two</h3>
+            <img class = "image" src = "check2.svg" alt = "icon">
+            <a href = "Team.html" class = "button">Start</a>
+        </div>
+
+        <div class = "option"> 
+            <h3>Health Check Three</h3>
+            <img class = "image" src = "check3.svg" alt = "icon">
+            <a href = "Team.html" class = "button">Start</a>
+        </div>
+</div>
+</body>
+</html
