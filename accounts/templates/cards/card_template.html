@@ -25,38 +25,36 @@
         padding: 3px;
         background-color: white;
         border: 3px solid black;
+        font-size: 20px;
     }
 
-    .options{
-        margin-top: -90px;
-        gap: 200px;
+    .options {
         display: flex;
         justify-content: center;
+        margin-left: 250px;
+        gap: 100px;
+    }
+ 
+    .colour_option select{
+        border: 2px solid #333;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        font-size: 20px;
     }
 
-    .redbutton, .yellowbutton, .greenbutton{
-        margin: 2px 2px;
-        padding: 20px 80px;
-        cursor: pointer;
-        border: 2px solid black;
+    .progress_option select {
+        border: 2px solid #333;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        font-size: 20px;
     }
-
-    .redbutton{
-        background-color:#de5b4f;
-    }
-
-    .yellowbutton{
-        background-color:#f7e176;
-    }
-    
-    .greenbutton{
-        background-color:#04AA6D;
-    }
-
     .buttons{
         display: flex;
         justify-content: center;
         margin: 80px auto auto;
+        margin-right: 430px;
         gap: 250px;
         width: 350px; 
     }
@@ -75,24 +73,31 @@
 {% block card_content %}
 
 {% block instructions_content %}{% endblock instructions_content %}
-{%block card1_content %}{% endblock %}
+{%block healthcard %}{% endblock healthcard %}
 
-<div class = "page">
-    <div class = "options">
-        <button class = "greenbutton">Stable</button>
-        <button class = "yellowbutton">Improving</button>
-        <button class = "redbutton">Getting Worse</button>
-        
+<div class = "options">
+    <div class = "colour_option">
+        <select>
+            <option>Pick a colour</option>
+            <option>Green</option>
+            <option>Yellow</option>
+            <option>Red</option>
+        </select>
     </div>
-
-
+        
+    <div class = "progress_option">
+        <select>
+            <option>Pick a progress</option>
+            <option>Stable</option>
+            <option>Improving</option>
+            <option>Getting worse</option>
+        </select>
+    </div>
+</div>
+    
     <div class = "buttons">
-    <a href = "{% url 'team' %}">
-        <button>Back</button>
-    </a>
-    <a href = "{% url 'card1' %}">
-        <button>Next</button>
-    </a>
+        <a href ="{% block previous_page %}{% endblock previous_page %}"><button>Back</button></a>
+    <a href ="{% block next_page %}{% endblock next_page %}"><button>Next</button></a>
     </div>
 
 </div>

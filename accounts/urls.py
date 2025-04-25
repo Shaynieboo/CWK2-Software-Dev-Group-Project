@@ -8,5 +8,5 @@ urlpatterns = [
     path ('instructions/', views.instructions, name = 'instructions'),
     path('summary/', views.summary, name = 'summary'),
     path('settings/', views.settings, name = 'settings'),
-    path('card/', views.card, name = 'card1'),
+    path('card/<int:number>/', views.card, name = 'card'),
 ]

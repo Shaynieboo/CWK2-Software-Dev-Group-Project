@@ -5,14 +5,20 @@
     <h1>Instructions</h1>
     <div class = "box">
         <p>
-            <b>Question: ???</b>
-            <br>Please select an option below:
-            <br>🟢 Stable
-            <br>🟡 Improving
-            <br>🔴 Getting worse
+            <br>Select a colour and progress below:
+            <br>Example: 🟢 Green Getting worse
+            <br>🟡 Yellow Stable
+            <br>🔴 Red Improving
         </p>
     </div>
 </div>
 {% endblock instructions_content %}
 
-{% block next_page %}{% endblock %}
+
+{% block previous_page %}
+    {% url 'team' %}
+{% endblock previous_page %}
+
+{% block next_page %}
+    {% url 'card' 1 %}
+{% endblock next_page %}

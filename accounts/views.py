@@ -29,5 +29,5 @@ def settings(request):
     return render(request, 'settings.html')
 
 
-def card(request):
-    return render(request, 'cards/card1.html')
+def card(request, number):
+    return render(request, f'cards/card{number}.html')

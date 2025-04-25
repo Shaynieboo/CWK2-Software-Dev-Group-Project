@@ -2,12 +2,12 @@
 
 {% block healthcard %}
 <div class = "page">
-    <h1>Teamwork</h1>
+    <h1>Support</h1>
     <div class = "box">
         <p>
-            <br>🟢 We often have lots of fun teamworking projects
-            <br>🟡We have some team work projects 
-            <br>🔴 We never have team work projects
+            <br>🟢 We always get great support when we ask for it!
+            <br>🟡 We get okay support when we ask for help
+            <br>🔴 We can't get the help we ask for when we are stuck
         </p>
     </div>
 </div>
@@ -15,9 +15,9 @@
 
 
 {% block previous_page %}
-    {% url 'instructions'  %}
+    {% url 'card' 3 %}
 {% endblock previous_page %}
 
 {% block next_page %}
-    {% url 'card' 2 %}
+    {% url 'card' 5 %}
 {% endblock next_page %}
