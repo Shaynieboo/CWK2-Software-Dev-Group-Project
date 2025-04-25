@@ -1,14 +1,136 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <style>
+        body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.left-side {
+    flex: 1;
+    background-color: #a5c8f0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.left-side img.health-image {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.right-side {
+    flex: 1;
+    background-color: #f5f5f5;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-side h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.right-side h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #444;
+}
+
+.links {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.links a {
+    color: #555;
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <h2>Login Page</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log in</button>
-    </form>
+    <div class="container">
+        <div class="left-side">
+            <img src="{% static 'images/health_check_icon.png' %}" alt="Health Check Image" class="health-image">
+            <h2>SKY Health Check</h2>
+            <p>Team health matters<br>Track, Visualise, and Grow!</p>
+        </div>
+        <div class="right-side">
+            <h1>USER</h1>
+            <h2>Log in</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">Email ID</label>
+                    <input type="text" name="username" placeholder="Email or Username" required id="id_username">
+                </div>
+                <div class="form-group">
+                    <label for="id_password">Password</label>
+                    <input type="password" name="password" placeholder="Password" required id="id_password">
+                </div>
+                <button type="submit" class="login-btn">Log in</button>
+            </form>
+
+            <div class="links">
+                <a href="{% url 'password_reset' %}">Forgot your password?</a><br>
+                <a href="{% url 'signup' %}">Create Account</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -19,6 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),  # built-in login/logout views
-    path('accounts/', include('accounts.urls')),  #custom views
+    path('accounts/', include('django.contrib.auth.urls')),  # includes login/logout/password_reset
+    path('accounts/', include('accounts.urls')),  # custom signup and login
 ]
