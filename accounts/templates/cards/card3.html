@@ -1,0 +1,23 @@
+{% extends "cards/card_template.html" %}
+
+{% block healthcard %}
+<div class = "page">
+    <h1>Learning</h1>
+    <div class = "box">
+        <p>
+            <br>🟢 We learn lots of interesting stuff at all the time!
+            <br>🟡 We learn some interesting stuff at times
+            <br>🔴 We don't learn anything at all
+        </p>
+    </div>
+</div>
+{% endblock healthcard %}
+
+
+{% block previous_page %}
+    {% url 'card' 2 %}
+{% endblock previous_page %}
+
+{% block next_page %}
+    {% url 'card' 4 %}
+{% endblock next_page %}

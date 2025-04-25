@@ -1,0 +1,77 @@
+{% include "pages/sidepanel.html" %}
+
+{% block team_css %}
+<style>
+    .page {
+        margin-left: 120px;
+        padding: 70px;
+        background-color: #B9D8F3;
+    }
+    
+    .page h1 {
+        text-align: center;
+        margin-top: 90px;
+        font-size: 40px;
+    }
+
+    .page h3{
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .teamselection{
+        text-align: center;
+    }
+
+    .teamselection select {
+        border: 2px solid #333;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        font-size: 20px;
+    }
+
+    .buttons{
+        display: flex;
+        margin: 100px auto auto;
+        gap: 100px;
+        width: 350px; 
+    }
+
+    .buttons button {
+        margin-left: 60px;
+        padding: 20px 30px;
+        font-size: 16px;
+        background-color: #073284;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+{% endblock team_css %}
+
+
+{% block team_content %}
+<div class = "page">
+    <h1>Team</h1>
+    <h3><b>Select Your Team Below</b></h3>
+
+    <div class = "teamselection">
+        <select>
+            <option>Choose your team</option>
+            <option>Team 1</option>
+            <option>Team 2</option>
+            <option>Team 3</option>
+            <option>Team 4</option>
+        </select>
+    </div>
+</div>
+
+<div class = "buttons">
+    <a href ="{% url 'dashboard' %}" class="backbutton">
+        <button>Back</button>
+    </a>
+    <a href = "{% url 'instructions' %}" class = "nextbutton">
+        <button>Next</button>
+    </a>
+</div>
+{% endblock team_content %}

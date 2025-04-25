@@ -1,0 +1,104 @@
+{% include "pages/sidepanel.html" %}
+
+{% block cardtemplate_css %}
+<style>
+    .page {
+        margin-left: 200px;
+        padding: 120px;
+        background-color: #B9D8F3;
+        text-align: center;
+    }
+    
+    .page h1 {
+        margin-top: 10px;
+        margin-left: 40px;
+        font-size: 40px;
+    }
+
+    .page h3{
+        margin-top: 50px;
+    
+    }
+
+    .box{
+        margin-left: 50px;
+        padding: 3px;
+        background-color: white;
+        border: 3px solid black;
+        font-size: 20px;
+    }
+
+    .options {
+        display: flex;
+        justify-content: center;
+        margin-left: 250px;
+        gap: 100px;
+    }
+ 
+    .colour_option select{
+        border: 2px solid #333;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        font-size: 20px;
+    }
+
+    .progress_option select {
+        border: 2px solid #333;
+        padding: 20px;
+        width: 300px;
+        margin: auto;
+        font-size: 20px;
+    }
+    .buttons{
+        display: flex;
+        justify-content: center;
+        margin: 80px auto auto;
+        margin-right: 430px;
+        gap: 250px;
+        width: 350px; 
+    }
+
+    .buttons button {
+        padding: 20px 30px;
+        font-size: 16px;
+        background-color: #073284;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+{% endblock cardtemplate_css%}
+
+
+{% block card_content %}
+
+{% block instructions_content %}{% endblock instructions_content %}
+{%block healthcard %}{% endblock healthcard %}
+
+<div class = "options">
+    <div class = "colour_option">
+        <select>
+            <option>Pick a colour</option>
+            <option>Green</option>
+            <option>Yellow</option>
+            <option>Red</option>
+        </select>
+    </div>
+        
+    <div class = "progress_option">
+        <select>
+            <option>Pick a progress</option>
+            <option>Stable</option>
+            <option>Improving</option>
+            <option>Getting worse</option>
+        </select>
+    </div>
+</div>
+    
+    <div class = "buttons">
+        <a href ="{% block previous_page %}{% endblock previous_page %}"><button>Back</button></a>
+    <a href ="{% block next_page %}{% endblock next_page %}"><button>Next</button></a>
+    </div>
+
+</div>
+{% endblock card_content%}

@@ -1,0 +1,24 @@
+{% extends "cards/card_template.html" %}
+
+{% block instructions_content %}
+<div class = "page">
+    <h1>Instructions</h1>
+    <div class = "box">
+        <p>
+            <br>Select a colour and progress below:
+            <br>Example: 🟢 Green Getting worse
+            <br>🟡 Yellow Stable
+            <br>🔴 Red Improving
+        </p>
+    </div>
+</div>
+{% endblock instructions_content %}
+
+
+{% block previous_page %}
+    {% url 'team' %}
+{% endblock previous_page %}
+
+{% block next_page %}
+    {% url 'card' 1 %}
+{% endblock next_page %}

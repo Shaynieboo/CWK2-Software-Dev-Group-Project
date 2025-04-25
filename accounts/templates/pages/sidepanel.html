@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Webpage</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .sidepanel {
+            width: 200px;
+            height: 100vh;
+            background-color: #c8deda;
+            position: fixed;
+            border: 1px solid black;
+   
+        }
+
+        .sidepanel ul {
+            margin: 50px 20px; 
+            padding: 0;
+            font-size: 14px;
+            font-family: Arial;
+        }
+
+        .sidepanel li {
+            margin: 20px 0;
+            list-style: none;
+        }
+
+        .sidepanel a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .sidepanel a:hover {
+            text-decoration: underline;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .settings{
+            position: absolute;
+            bottom: 50px; 
+            left: 20px;
+            font-size: 14px;
+        }
+
+        .logout a, .settings a{
+            display: block;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+<div class = "sidepanel">
+    <h3 style = "text-align: center; padding-top: 20px;">Sky Health Check</h3>
+    <ul>
+        <li><a href="{% url 'dashboard' %}"><b>Dashboard</b></a></li>
+        <li><b>Rating Health</b></li>
+    </ul>
+
+    <ul class = "settings">
+        <li><a href="Settings.html"><b>Settings</b></a></li>
+    </ul>
+
+    <ul class = "logout">
+        <li><a href="{% url 'logout' %}"><b>Log out</b></a></li>
+    </ul>
+</div>
+</body>
+</html>

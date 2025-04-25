@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 def signup_view(request):
     if request.method == 'POST':
@@ -10,3 +11,23 @@ def signup_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
+
+
+def dashboard_view(request):
+    return render(request, 'pages/dashboard.html')
+
+def team_view(request):
+    return render(request, 'pages/team.html')
+
+def instructions(request):
+    return render(request, 'pages/instructions.html')
+
+def summary(request):
+    return render(request, 'summary.html')
+
+def settings(request):
+    return render(request, 'settings.html')
+
+
+def card(request, number):
+    return render(request, f'cards/card{number}.html')

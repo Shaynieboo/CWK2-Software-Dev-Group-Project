@@ -1,0 +1,23 @@
+{% extends "cards/card_template.html" %}
+
+{% block healthcard %}
+<div class = "page">
+    <h1>Work-Life Balance</h1>
+    <div class = "box">
+        <p>
+            <br>🟢 We have a great work and life balance
+            <br>🟡 We have good work and life balance but can be better
+            <br>🔴 Our work and life balance is poor
+        </p>
+    </div>
+</div>
+{% endblock healthcard %}
+
+
+{% block previous_page %}
+    {% url 'card' 7 %}
+{% endblock previous_page %}
+
+{% block next_page %}
+    {% url 'card' 9 %}
+{% endblock next_page %}
