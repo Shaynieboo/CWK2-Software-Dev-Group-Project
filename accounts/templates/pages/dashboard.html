@@ -1,75 +1,11 @@
+{% include "pages/sidepanel.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-    <title>Dashboard</title>
-    <style>
-
-        body {
-            margin: 0;
-        }
-        .sidepanel {
-            width: 200px;
-            height: 100vh;
-            background-color: #c8deda;
-            position: fixed;
-            border: 1px solid black;
-            
-        }
-
-        .sidepanel ul {
-            margin: 50px 20px; 
-            padding: 0;
-            font-size: 14px;
-            font-family: Arial;
-        }
-
-        .sidepanel li {
-            margin: 20px 0;
-            list-style: none;
-        }
-
-        .sidepanel a {
-            display: block;
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .sidepanel a:hover {
-            text-decoration: underline;
-        }
-
-        .logout {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 14px;
-        }
-
-        .settings{
-            position: absolute;
-            bottom: 50px; 
-            left: 20px;
-            font-size: 14px;
-        }
-
-        .logout a, .settings a{
-            display: block;
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        
-        .page {
-            margin-left: 240px;
-            padding: 20px
-        }
-
-        .healthcheck{
+{% block dashboard_css %}
+<style>
+    .healthcheck{
             display: flex;
-            gap: 60px;
+            gap: 80px;
             margin-top: 80px;
             margin-left: 220px;
             padding-left: 30px;
@@ -88,7 +24,7 @@
             display: block;
             margin: 0 auto;
         }
-
+xw
         .button{
             background-color: #007bff;
             color: white;
@@ -102,59 +38,44 @@
 
         .container{
             background-color: #d3d3f1 ;
-            padding: 20px 80px;
+            padding: 20px 90px;
             border: 2px solid black;
         } 
-    </style>
-</head>
+       
+        .page {
+            margin-left: 210px;
+            padding: 5px;
+        }
 
+</style>
+{% endblock %}
 
-<body>
-
-<div class = "sidepanel">
-    <h3 style = "text-align: center; padding-top: 20px;">Sky Health Check</h3>
-    <ul>
-        <li><a href="{% url 'dashboard' %}"><b>Dashboard</b></a></li>
-        <li><b>Rating Health</b></a></li>
-        <li><a href="Summary.html"><b>Summary</b></a></li>
-    </ul>
-
-    <ul class = "settings">
-        <li><a href="Settings.html"><b>Settings</b></a></li>
-    </ul>
-
-    <ul class = "logout">
-        <li><a href="logout.html"><b>Log out</b></a></li>
-    </ul>
-</div>
-
-<div class = "page">
+{% block dashboard_content %}
+<div class="page">
     <header>
         <h3>Dashboard</h3>
-        <h1><b>Welcome to Sky Health Check</b></h1>
+        <h1><b>Welcome to Sky Health Check, {{ user.username }}</b></h1>
         <p>Want to say something about your health?</p>
     </header>
 </div>
-
-<div class = "container">
-    <div class = "healthcheck">
-        <div class = "option"> 
+<div class="container">
+    <div class="healthcheck">
+        <div class="option"> 
             <h3>Health Check One</h3>
-            <img class = "image" src = "{%static 'pages/check1.svg'%}" alt = "icon">
-            <a href = "{% url 'team' %}"class = "button">Start</a>
+            <img class="image" src="{% static 'pages/check1.svg' %}" alt="icon">
+            <a href="{% url 'team' %}" class="button">Start</a>
         </div>
-
-        <div class = "option"> 
+        <div class="option"> 
             <h3>Health Check Two</h3>
-            <img class = "image" src = "{%static 'pages/check2.svg'%}" alt = "icon">
-            <a href ="{% url 'team' %}" class = "button">Start</a>
+            <img class="image" src="{% static 'pages/check2.svg' %}" alt="icon">
+            <a href="{% url 'team' %}" class="button">Start</a>
         </div>
-
-        <div class = "option"> 
+        <div class="option"> 
             <h3>Health Check Three</h3>
-            <img class = "image" src = "{%static 'pages/check3.svg'%}" alt = "icon">
-            <a href = "{% url 'team' %}" class = "button">Start</a>
+            <img class="image" src="{% static 'pages/check3.svg' %}" alt="icon">
+            <a href="{% url 'team' %}" class="button">Start</a>
         </div>
+    </div>
 </div>
-</body>
-</html>
+</div>
+{% endblock dashboard_content %}

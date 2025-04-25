@@ -7,5 +7,6 @@ urlpatterns = [
     path ('team/', views.team_view, name = 'team'),
     path ('instructions/', views.instructions, name = 'instructions'),
     path('summary/', views.summary, name = 'summary'),
-     path('settings/', views.settings, name = 'settings'),
+    path('settings/', views.settings, name = 'settings'),
+    path('card/', views.card, name = 'card1'),
 ]

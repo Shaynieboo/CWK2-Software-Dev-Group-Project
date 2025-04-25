@@ -1,0 +1,99 @@
+{% include "pages/sidepanel.html" %}
+
+{% block cardtemplate_css %}
+<style>
+    .page {
+        margin-left: 200px;
+        padding: 120px;
+        background-color: #B9D8F3;
+        text-align: center;
+    }
+    
+    .page h1 {
+        margin-top: 10px;
+        margin-left: 40px;
+        font-size: 40px;
+    }
+
+    .page h3{
+        margin-top: 50px;
+    
+    }
+
+    .box{
+        margin-left: 50px;
+        padding: 3px;
+        background-color: white;
+        border: 3px solid black;
+    }
+
+    .options{
+        margin-top: -90px;
+        gap: 200px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .redbutton, .yellowbutton, .greenbutton{
+        margin: 2px 2px;
+        padding: 20px 80px;
+        cursor: pointer;
+        border: 2px solid black;
+    }
+
+    .redbutton{
+        background-color:#de5b4f;
+    }
+
+    .yellowbutton{
+        background-color:#f7e176;
+    }
+    
+    .greenbutton{
+        background-color:#04AA6D;
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: center;
+        margin: 80px auto auto;
+        gap: 250px;
+        width: 350px; 
+    }
+
+    .buttons button {
+        padding: 20px 30px;
+        font-size: 16px;
+        background-color: #073284;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+{% endblock cardtemplate_css%}
+
+
+{% block card_content %}
+
+{% block instructions_content %}{% endblock instructions_content %}
+{%block card1_content %}{% endblock %}
+
+<div class = "page">
+    <div class = "options">
+        <button class = "greenbutton">Stable</button>
+        <button class = "yellowbutton">Improving</button>
+        <button class = "redbutton">Getting Worse</button>
+        
+    </div>
+
+
+    <div class = "buttons">
+    <a href = "{% url 'team' %}">
+        <button>Back</button>
+    </a>
+    <a href = "{% url 'card1' %}">
+        <button>Next</button>
+    </a>
+    </div>
+
+</div>
+{% endblock card_content%}
