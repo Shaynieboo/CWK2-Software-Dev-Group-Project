@@ -39,12 +39,19 @@
     }
 
     .buttons button {
-        margin-left: 60px;
+        margin-left: 20px;
         padding: 20px 30px;
         font-size: 16px;
         background-color: #073284;
         color: white;
         cursor: pointer;
+    }
+
+    .error_message{
+        color: red;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 40px;
     }
 </style>
 {% endblock team_css %}
@@ -55,23 +62,32 @@
     <h1>Team</h1>
     <h3><b>Select Your Team Below</b></h3>
 
-    <div class = "teamselection">
-        <select>
-            <option>Choose your team</option>
-            <option>Team 1</option>
-            <option>Team 2</option>
-            <option>Team 3</option>
-            <option>Team 4</option>
-        </select>
-    </div>
-</div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class = "error_message">
+                <p>{{message}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method = "POST">
+        {% csrf_token %}
+        <div class = "teamselection">
+            <select name = "team">
+                <option value = "" disabled selected>Choose your team</option>
+                <option value = "one">Team 1</option>
+                <option value = "two">Team 2</option>
+                <option value = "three">Team 3</option>
+                <option value = "four">Team 4</option>
+            </select>
+        </div>
 
-<div class = "buttons">
-    <a href ="{% url 'dashboard' %}" class="backbutton">
-        <button>Back</button>
-    </a>
-    <a href = "{% url 'instructions' %}" class = "nextbutton">
-        <button>Next</button>
-    </a>
+
+        <div class = "buttons">
+            <a href ="{% url 'dashboard' %}" class="backbutton">
+                <button type = "button">Back</button>
+            </a>
+            <button type = "submit">Next</button>
+        </div>
+    </form>
 </div>
 {% endblock team_content %}

@@ -3,6 +3,9 @@
 {% block instructions_content %}
 <div class = "page">
     <h1>Instructions</h1>
+    {% if selected_team}
+        <h3>You are: {{ selected_team }}</h3>
+    {% endif %}
     <div class = "box">
         <p>
             <br>Select a colour and progress below:

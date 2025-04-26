@@ -3,49 +3,55 @@
 
 {% block dashboard_css %}
 <style>
+
+    form {
+        display: contents;
+    }
+    
     .healthcheck{
-            display: flex;
-            gap: 80px;
-            margin-top: 80px;
-            margin-left: 220px;
-            padding-left: 30px;
-        }
+        display: flex;
+        gap: 40px;
+        margin-top: 80px;
+        margin-left: 220px;
+        padding-left: 30px;
+    }
 
-        .option {
-            background-color: #f0f8ff;
-            border: 2px solid black;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            width: 200px;
-        }
+    .option {
+        background-color: #f0f8ff;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        width: 200px;
+    }
 
-        .option img {
-            display: block;
-            margin: 0 auto;
-        }
-xw
-        .button{
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            margin-top: 30px;
-            border: 1px solid black;
-        }
+    .option img {
+        display: block;
+        margin: 0 auto;
+    }
 
-        .container{
-            background-color: #d3d3f1 ;
-            padding: 20px 90px;
-            border: 2px solid black;
-        } 
-       
-        .page {
-            margin-left: 210px;
-            padding: 5px;
-        }
+    .button{
+        background-color: #007bff;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 30px;
+        border: 1px solid black;
+    }
+
+    .container{
+        background-color: #d3d3f1 ;
+        padding: 20px 90px;
+        border: 2px solid black;
+    } 
+    
+    .page {
+        margin-left: 210px;
+        padding: 5px;
+    }
+
 
 </style>
 {% endblock %}
@@ -60,21 +66,24 @@ xw
 </div>
 <div class="container">
     <div class="healthcheck">
-        <div class="option"> 
-            <h3>Health Check One</h3>
-            <img class="image" src="{% static 'pages/check1.svg' %}" alt="icon">
-            <a href="{% url 'team' %}" class="button">Start</a>
-        </div>
-        <div class="option"> 
-            <h3>Health Check Two</h3>
-            <img class="image" src="{% static 'pages/check2.svg' %}" alt="icon">
-            <a href="{% url 'team' %}" class="button">Start</a>
-        </div>
-        <div class="option"> 
-            <h3>Health Check Three</h3>
-            <img class="image" src="{% static 'pages/check3.svg' %}" alt="icon">
-            <a href="{% url 'team' %}" class="button">Start</a>
-        </div>
+        <form method = "POST">
+            {% csrf_token %}
+                <div class="option"> 
+                    <h3>Health Check One</h3>
+                    <img class="image" src="{% static 'pages/check1.svg' %}" alt="icon">
+                    <button type = "submit" name = "session" value = "session1" class = "button">Start</button>
+                </div>
+                <div class="option"> 
+                    <h3>Health Check Two</h3>
+                    <img class="image" src="{% static 'pages/check2.svg' %}" alt="icon">
+                    <button type = "submit" name = "session" value = "session2" class = "button">Start</button>
+                </div>
+                <div class="option"> 
+                    <h3>Health Check Three</h3>
+                    <img class="image" src="{% static 'pages/check3.svg' %}" alt="icon">
+                    <button type = "submit" name = "session" value = "session3" class = "button">Start</button>
+                </div>
+        </form>
     </div>
 </div>
 </div>
