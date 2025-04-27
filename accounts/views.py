@@ -14,7 +14,7 @@ def signup_view(request):
             user = form.save()
             login(request, user)  # Log the user in after signup
             messages.success(request, "Account created successfully!")
-            return redirect('role_based_redirect')  # 
+            return redirect('role_based_redirect')  # go to smart redirect
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
@@ -22,17 +22,18 @@ def signup_view(request):
 # Role-based redirect view
 @login_required
 def role_based_redirect(request):
-    user = request.user
-    if user.role == 'engineer':
-        return redirect('dashboard')  # name of our dashboard url
-    elif user.role == 'team_leader':
-        return redirect('team_leader_dashboard')
-    elif user.role == 'dept_leader':
-        return redirect('department_summary')
-    elif user.role == 'senior_manager':
-        return redirect('senior_manager_summary')
-    else:
-        return redirect('login')
+    return redirect('dashboard')
+    # user = request.user
+    # if user.role == 'engineer':
+    #     return redirect('dashboard')  # you already have this view
+    # elif user.role == 'team_leader':
+    #     return redirect('team')  # TEMPORARY: send to team page for now
+    # elif user.role == 'dept_leader':
+    #     return redirect('summary')  # TEMPORARY: send to summary page for now
+    # elif user.role == 'senior_manager':
+    #     return redirect('summary')  # TEMPORARY: send to summary page
+    # else:
+    #     return redirect('login')  # fallback if role missing
 
 # Dashboard View
 @login_required
@@ -40,14 +41,12 @@ def dashboard_view(request):
     if request.method == 'POST':
         form = SessionSelectionForm(request.POST)
         if form.is_valid():
-            print("form valid")
             selected_session = form.save(commit=False)
             selected_session.user = request.user
             selected_session.save()
             return redirect('team')
     else:
         form = SessionSelectionForm()
-
     return render(request, 'pages/dashboard.html', {'form': form})
 
 # Team View
@@ -60,15 +59,11 @@ def team_view(request):
             selected_team.user = request.user
             selected_team.save()
             request.session['selected_team'] = selected_team
-            print("Redirecting to instructions page")
-
             return redirect('instructions')
-        
         else:
             messages.error(request, "You must choose a team")
     else:
-        form = TeamSelectionForm()     
-    
+        form = TeamSelectionForm()
     return render(request, 'pages/team.html', {'form': form})
 
 # Instructions View
@@ -78,13 +73,16 @@ def instructions(request):
     return render(request, 'pages/instructions.html')
 
 # Summary View
+@login_required
 def summary(request):
     return render(request, 'summary.html')
 
 # Settings View
+@login_required
 def settings(request):
     return render(request, 'settings.html')
 
 # Card View
+@login_required
 def card(request, number):
     return render(request, f'cards/card{number}.html')
