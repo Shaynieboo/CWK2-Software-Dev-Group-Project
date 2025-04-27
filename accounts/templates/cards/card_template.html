@@ -66,6 +66,13 @@
         color: white;
         cursor: pointer;
     }
+
+    .error_message{
+        color: red;
+        font-size: 20x;
+        text-align: center;
+        margin-bottom: 40px;
+    }
 </style>
 {% endblock cardtemplate_css%}
 
@@ -75,30 +82,45 @@
 {% block instructions_content %}{% endblock instructions_content %}
 {%block healthcard %}{% endblock healthcard %}
 
-<div class = "options">
-    <div class = "colour_option">
-        <select>
-            <option>Pick a colour</option>
-            <option>Green</option>
-            <option>Yellow</option>
-            <option>Red</option>
-        </select>
+{% if messages %}
+{% for message in messages %}
+    <div class = "error_message">
+        <p>{{message}}</p>
     </div>
+{% endfor %}
+{% endif %}
+
+<form method = 'POST'>
+    {% csrf_token %}
+    <div class = "options">
+        <div class = "colour_option">
+            <select name = "colour">
+                <option value = "" disabled selected >Pick a colour</option>
+                <option value = "green">Green</option>
+                <option value = "yellow">Yellow</option>
+                <option value = "red">Red</option>
+            </select>
+        </div>
         
-    <div class = "progress_option">
-        <select>
-            <option>Pick a progress</option>
-            <option>Stable</option>
-            <option>Improving</option>
-            <option>Getting worse</option>
-        </select>
+        <div class = "progress_option">
+            <select name = "progress">
+                <option value = "" disabled selected>Pick a progress</option>
+                <option value = "stable">Stable</option>
+                <option value = "improving">Improving</option>
+                <option value = "getting_worse">Getting worse</option>
+            </select>
+        </div>
     </div>
-</div>
     
     <div class = "buttons">
-        <a href ="{% block previous_page %}{% endblock previous_page %}"><button>Back</button></a>
-    <a href ="{% block next_page %}{% endblock next_page %}"><button>Next</button></a>
+        {% block previous_page %}
+
+        {% endblock previous_page %}
+
+        {% block next_page %}
+
+        {% endblock next_page %}
     </div>
 
-</div>
+</form>
 {% endblock card_content%}

@@ -15,9 +15,13 @@
 
 
 {% block previous_page %}
-    {% url 'card' 7 %}
+    <a href ="{% url 'card' 7 %}" class = "backbutton">
+        <button type = "button">Back</button>
+    </a>
 {% endblock previous_page %}
 
 {% block next_page %}
-    {% url 'card' 9 %}
+    <a href = "{% url 'card' 9 %}">
+        <button type = "submit">Next</button>
+    </a>
 {% endblock next_page %}

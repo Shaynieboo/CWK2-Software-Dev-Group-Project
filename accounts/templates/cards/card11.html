@@ -13,11 +13,14 @@
 </div>
 {% endblock healthcard %}
 
-
 {% block previous_page %}
-    {% url 'card' 10 %}
+    <a href ="{% url 'card' 10 %}" class = "backbutton">
+        <button type = "button">Back</button>
+    </a>
 {% endblock previous_page %}
 
 {% block next_page %}
-    {% url 'card' 11 %}
+    <a href = "{% url 'dashboard' %}">
+        <button type = "submit">Next</button>
+    </a>
 {% endblock next_page %}
