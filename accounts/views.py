@@ -1,33 +1,36 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
+
+from .forms import CustomUserCreationForm
+
+# Sign up view
 def signup_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            user = form.save()
+            login(request, user)  # Log the user in after signup
+            messages.success(request, "Account created successfully!")
+            return redirect('role_based_redirect')  # 
     else:
-        form = UserCreationForm()
-    return render(request, 'accounts/signup.html', {'form': form})
+        form = CustomUserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
-
-def dashboard_view(request):
-    return render(request, 'pages/dashboard.html')
-
-def team_view(request):
-    return render(request, 'pages/team.html')
-
-def instructions(request):
-    return render(request, 'pages/instructions.html')
-
-def summary(request):
-    return render(request, 'summary.html')
-
-def settings(request):
-    return render(request, 'settings.html')
-
-
-def card(request, number):
-    return render(request, f'cards/card{number}.html')
+# Role-based redirect view
+@login_required
+def role_based_redirect(request):
+    user = request.user
+    if user.role == 'engineer':
+        return redirect('dashboard')  # name of our dashboard url
+    elif user.role == 'team_leader':
+        return redirect('team_leader_dashboard')
+    elif user.role == 'dept_leader':
+        return redirect('department_summary')
+    elif user.role == 'senior_manager':
+        return redirect('senior_manager_summary')
+    else:
+        return redirect('login')
+        

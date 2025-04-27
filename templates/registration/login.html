@@ -1,4 +1,13 @@
 {% load static %}
+{% if messages %}
+  {% for message in messages %}
+    <div style="color: green;">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
