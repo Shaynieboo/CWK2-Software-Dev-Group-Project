@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior Management Summary</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #e8f2ee;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin: 20px 20px 20px 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 0 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      padding: 8px 10px;
+    }
+
+    .nav-links a.active {
+      color: purple;
+      font-weight: bold;
+      border-left: 4px solid purple;
+      padding-left: 6px;
+    }
+
+    .sidebar-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 20px 20px;
+    }
+
+    .sidebar-bottom a {
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      background-color: #f9f9f9;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .header .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header .user img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .votes-summary {
+      margin-top: 5px;
+      font-size: 16px;
+      color: purple;
+      font-weight: bold;
+    }
+
+    .progress-section {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      background-color: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 10px;
+      flex: 1;
+      margin-right: 10px;
+    }
+
+    .progress-bar div {
+      height: 100%;
+      width: 100%;
+      background-color: purple;
+    }
+
+    .percentage-label {
+      font-size: 14px;
+      font-weight: bold;
+      color: purple;
+    }
+
+    .content-layout {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .left-side {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 3;
+    }
+
+    .box {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
+      min-height: 150px;
+    }
+
+    .right-side {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .box img, .right-side img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <h2>SKY Health Check</h2>
+      <div class="nav-links">
+        <a href="Dashboard.html">Dashboard</a>
+        <a href="RatingHealth.html">Rating Health</a>
+        <a href="Card1.html">Card 1</a>
+        <a href="Card2.html">Card 2</a>
+        <a href="Card3.html">Card 3</a>
+        <a href="Summary.html" class="active">Summary</a>
+        <a href="ViewCards.html">View Cards</a>
+      </div>
+    </div>
+    <div class="sidebar-bottom">
+      <a href="Settings.html">Settings</a>
+      <a href="Logout.html">Log out</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="header">
+      <div>
+        <h1>Senior Mangement</h1>
+        <div class="votes-summary">Votes Summary</div>
+      </div>
+      <div class="user">
+        <img src="profile.png" alt="User">
+        <span>xxxxx</span>
+      </div>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-bar">
+        <div></div>
+      </div>
+      <div class="percentage-label">100%</div>
+    </div>
+
+    <div class="content-layout">
+      <div class="left-side">
+        <div class="box">
+          <div class="chart-title">Total Department Combined Progress</div>
+     
+        </div>
+        <div class="box">
+          <div class="chart-title">Department Summaries</div>
+          
+        </div>
+      </div>
+
+      <div class="right-side">
+        <div class="chart-title">Teams Progress Overview</div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
