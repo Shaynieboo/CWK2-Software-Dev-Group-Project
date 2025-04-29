@@ -10,7 +10,7 @@ urlpatterns = [
     path('team/', views.team_view, name='team'),
     path('instructions/', views.instructions, name='instructions'),
     path('summary/', views.summary, name='summary'),
-    path('settings/', views.settings, name='settings'),
+    path('settings/', views.setting_view, name='settings'),
     path('card/<int:number>/', views.card, name='card'),
     path('redirect/', views.role_based_redirect, name='role_based_redirect'),
     

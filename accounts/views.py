@@ -30,12 +30,13 @@ def role_based_redirect(request):
 
 # Author: An An
 # Dashboard View is used to handle sessions the user chooses.
+
 def dashboard_view(request):
     if request.method == 'POST': # I created a form to handle the POST methods
         form = SessionSelectionForm(request.POST)
         if form.is_valid(): # checks if the form is valid 
             session = form.save(commit = False) #create instance for the session form
-         #   session.user = request.user #assigns session to the user
+            session.user = request.user #assigns session to the user
             session.save() # save the session to databse and redirect user to teams pae
             return redirect('team')
     else:
@@ -100,16 +101,6 @@ def card(request, number):
 def summary(request):
     return render(request, 'summary.html')
 
-# Settings View
-#@login_required
-def settings(request):
-    return render(request, 'pages/profile_settings.html')
-
-
-# Card View
-@login_required
-def card(request, number):
-    return render(request, f'cards/card{number}.html')
 
 # Home View (for when users first visit the base URL '/')
 def home_view(request):
