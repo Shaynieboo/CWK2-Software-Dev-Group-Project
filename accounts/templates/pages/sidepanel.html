@@ -3,6 +3,7 @@
 <head>
     <title>Webpage</title>
     <style>
+        /* CSS for the sidepaenl*/
         body {
             margin: 0;
         }
@@ -62,19 +63,19 @@
 </head>
 
 <body>
-<div class = "sidepanel">
+<div class = "sidepanel"> <!--This class contains navigation links to each page-->
     <h3 style = "text-align: center; padding-top: 20px;">Sky Health Check</h3>
     <ul>
-        <li><a href="{% url 'dashboard' %}"><b>Dashboard</b></a></li>
+        <li><a href="{% url 'dashboard' %}"><b>Dashboard</b></a></li> <!--Link to dashboard-->
         <li><b>Rating Health</b></li>
     </ul>
 
     <ul class = "settings">
-        <li><a href="Settings.html"><b>Settings</b></a></li>
+        <li><a href="Settings.html"><b>Settings</b></a></li> <!--Link to settings-->
     </ul>
 
     <ul class = "logout">
-        <li><a href="{% url 'logout' %}"><b>Log out</b></a></li>
+        <li><a href="{% url 'logout' %}"><b>Log out</b></a></li> <!--User is logged out and redirected to login page-->
     </ul>
 </div>
 </body>

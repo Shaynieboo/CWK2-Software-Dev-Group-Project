@@ -1,15 +1,17 @@
-{% extends "cards/card_template.html" %}
+<!--Child template of card_template-->
+{% extends "cards/card_template.html" %} <!--The card_template is inherited in this folder-->
 
-{% block instructions_content %}
+{% block instructions_content %} <!--This block contains the main content for my instrucitons page-->
 <div class = "page">
     <h1>Instructions</h1>
 
-    <div class = "box">
+    <div class = "box"> <!--This box contains my instructions-->
         <p>
             <br>Select a colour and progress below:
             <br>Example: 🟢 Green Getting worse
             <br>🟡 Yellow Stable
             <br>🔴 Red Improving
+            <br>Your choice will be recorded
         </p>
     </div>
 </div>
@@ -17,14 +19,14 @@
 
 
 
-{% block previous_page %}
+{% block previous_page %} <!--Block is created to store i-->
     <a href ="{% url 'team' %}" class = "backbutton">
-        <button type = "button">Back</button>
+        <button type = "button">Back</button> <!--Button that directs the user  back to teams page-->
     </a>
 {% endblock previous_page %}
 
 {% block next_page %}
     <a href = "{% url 'card' 1 %}">
-        <button type = "button">Next</button>
+        <button type = "button">Next</button> <!--Button that directs user to the first card page -->
     </a>
 {% endblock next_page %}

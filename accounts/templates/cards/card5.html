@@ -1,6 +1,7 @@
-{% extends "cards/card_template.html" %}
+<!--Child template of cards_template -->
+{% extends "cards/card_template.html" %} <!--The card template is extended in this page -->
 
-{% block healthcard %}
+{% block healthcard %} <!--This block stores the main contents on this page that will be shown on the parent's page -->
 <div class = "page">
     <h1>Speed</h1>
     <div class = "box">
@@ -15,13 +16,13 @@
 
 
 {% block previous_page %}
-    <a href ="{% url 'card' 4 %}" class = "backbutton">
+    <a href ="{% url 'card' 4 %}" class = "backbutton"> <!--This block includes a back button that will direct the user back to previous page-->
         <button type = "button">Back</button>
     </a>
 {% endblock previous_page %}
 
 {% block next_page %}
-    <a href = "{% url 'card' 6 %}">
+    <a href = "{% url 'card' 6 %}">  <!--This block includes a submit button that will redirect the user to the next page-->
         <button type = "submit">Next</button>
     </a>
 {% endblock next_page %}

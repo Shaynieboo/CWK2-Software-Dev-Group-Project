@@ -1,5 +1,13 @@
 from django import forms
 from .models import Team, Session, Card
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'role', 'password1', 'password2')
+#  allows new users to choose their role when signing up.
 
 # Author: An An
 class TeamSelectionForm(forms.ModelForm):

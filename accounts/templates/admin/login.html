@@ -1,18 +1,9 @@
 {% load static %}
-{% if messages %}
-  {% for message in messages %}
-    <div style="color: green;">
-      {{ message }}
-    </div>
-  {% endfor %}
-{% endif %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
-    <title>Create Account</title>
+    <title>Admin Login</title>
     <style>
         body {
             margin: 0;
@@ -23,7 +14,7 @@
 
         .left {
             width: 50%;
-            background-color: #f09090;
+            background-color: #c59ef5;
             color: white;
             display: flex;
             flex-direction: column;
@@ -34,67 +25,83 @@
 
         .left img {
             width: 100px;
+            margin-bottom: 20px;
         }
 
         .left h1 {
+            font-size: 32px;
             margin-top: 1rem;
         }
 
         .right {
             width: 50%;
-            background: #f9f9f9;
+            background: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 40px;
         }
 
         .form-container {
-            width: 80%;
+            width: 100%;
             max-width: 400px;
         }
 
-        .form-container h2 {
+        h2 {
+            font-size: 28px;
             text-align: center;
+            margin-bottom: 20px;
         }
 
         input {
             width: 100%;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
-            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
             border: 1px solid #ccc;
         }
 
         button {
             width: 100%;
-            padding: 0.7rem;
-            margin-top: 1rem;
+            padding: 12px;
             background-color: black;
             color: white;
             border: none;
-            cursor: pointer;
+            border-radius: 5px;
             font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
         }
 
         .links {
-            margin-top: 1rem;
+            margin-top: 15px;
             text-align: center;
         }
 
-        a {
-            color: #333;
+        .links a {
+            color: #555;
             text-decoration: none;
         }
 
-        a:hover {
+        .links a:hover {
             text-decoration: underline;
+        }
+
+        .errorlist {
+            color: red;
+            list-style: none;
+            margin-top: 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <div class="left">
-        <img src="https://img.icons8.com/ios-filled/100/add-user-male.png" alt="User Icon" />
+        <img src="{% static 'images/your_icon.png' %}" alt="Admin Icon" />
         <h1>SKY Health Check</h1>
         <p>Team health matters</p>
         <p><strong>Track, Visualise, and Grow!</strong></p>
@@ -102,27 +109,16 @@
 
     <div class="right">
         <div class="form-container">
-            <h2>Create Account</h2>
-            {% if form.errors %}
-  <div style="color: red; margin-bottom: 20px;">
-    {% for field in form %}
-      {% for error in field.errors %}
-        <p>{{ error }}</p>
-      {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-      <p>{{ error }}</p>
-    {% endfor %}
-  </div>
-{% endif %}
-
-            <form method="post">
+            <h2>ADMIN Log in</h2>
+            <form method="post" action="{% url 'admin:login' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Sign up</button>
+                <button type="submit">Log in</button>
             </form>
+
             <div class="links">
-                <a href="{% url 'login' %}">Already have an account? Sign in</a>
+                <a href="{% url 'password_reset' %}">Forgot your password?</a><br>
+                <a href="{% url 'signup' %}">Create Account</a>
             </div>
         </div>
     </div>

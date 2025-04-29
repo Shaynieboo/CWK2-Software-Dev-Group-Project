@@ -1,10 +1,10 @@
-{% include "pages/sidepanel.html" %}
-{% load static %}
+{% include "pages/sidepanel.html" %} <!--Side panel template is included on this page  -->
+{% load static %} <!--Access the static file which contains images for my dashboard-->
 
 {% block dashboard_css %}
 <style>
 
-    form {
+    form { /* CSS for this page */
         display: contents;
     }
     
@@ -57,28 +57,30 @@
 {% endblock %}
 
 {% block dashboard_content %}
+<!--Dashboard content, including the labels and the sessions-->
 <div class="page">
     <header>
         <h3>Dashboard</h3>
-        <h1><b>Welcome to Sky Health Check, {{ user.username }}</b></h1>
+        <h1><b>Welcome to Sky Health Check, {{ user.username }}</b></h1> <!--Accessing the useername attribute from user object-->
         <p>Want to say something about your health?</p>
     </header>
 </div>
+<!--This container contains the sessions on this page-->
 <div class="container">
     <div class="healthcheck">
-        <form method = "POST">
-            {% csrf_token %}
-                <div class="option"> 
+        <form method = "POST"> <!--Form is used to submit the user's session choices-->
+            {% csrf_token %} <!--CSRF token is used to protect data when the form is posted-->
+                <div class="option"> <!--First Session-->
                     <h3>Health Check One</h3>
                     <img class="image" src="{% static 'pages/check1.svg' %}" alt="icon">
-                    <button type = "submit" name = "session" value = "session1" class = "button">Start</button>
+                    <button type = "submit" name = "session" value = "session1" class = "button">Start</button> <!--Start button is used to submit the form-->
                 </div>
-                <div class="option"> 
+                <div class="option"> <!--Second Session-->
                     <h3>Health Check Two</h3>
                     <img class="image" src="{% static 'pages/check2.svg' %}" alt="icon">
                     <button type = "submit" name = "session" value = "session2" class = "button">Start</button>
                 </div>
-                <div class="option"> 
+                <div class="option"> <!--Third Session-->
                     <h3>Health Check Three</h3>
                     <img class="image" src="{% static 'pages/check3.svg' %}" alt="icon">
                     <button type = "submit" name = "session" value = "session3" class = "button">Start</button>

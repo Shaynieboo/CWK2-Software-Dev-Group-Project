@@ -1,7 +1,8 @@
-{% include "pages/sidepanel.html" %}
+<!--Parent template for instructions and card1.html to card11.html-->
+{% include "pages/sidepanel.html" %} <!--The side panel is included in this page-->
 
-{% block cardtemplate_css %}
-<style>
+{% block cardtemplate_css %} 
+<style> /*CSS for this page */
     .page {
         margin-left: 200px;
         padding: 120px;
@@ -79,22 +80,22 @@
 
 {% block card_content %}
 
-{% block instructions_content %}{% endblock instructions_content %}
-{%block healthcard %}{% endblock healthcard %}
+{% block instructions_content %}{% endblock instructions_content %} <!-- Content is defined in the child's template and placed here -->
+{%block healthcard %}{% endblock healthcard %} <!--Content is defined in the child's template -->
 
-{% if messages %}
+{% if messages %} <!--This block handles the error messages in my code-->
 {% for message in messages %}
     <div class = "error_message">
-        <p>{{message}}</p>
+        <p>{{message}}</p> <!--Error message is displayed here -->
     </div>
 {% endfor %}
 {% endif %}
 
-<form method = 'POST'>
-    {% csrf_token %}
+<form method = 'POST'> <!--Form is used to submit the user's health check choices-->
+    {% csrf_token %} <!--CSRF token is used to protect data when the form is posted-->
     <div class = "options">
         <div class = "colour_option">
-            <select name = "colour">
+            <select name = "colour"> <!--Simple HTML drop list is used that contains the colour options-->
                 <option value = "" disabled selected >Pick a colour</option>
                 <option value = "green">Green</option>
                 <option value = "yellow">Yellow</option>
@@ -103,7 +104,7 @@
         </div>
         
         <div class = "progress_option">
-            <select name = "progress">
+            <select name = "progress"> <!--Simple HTML drop list is used that contains the progress options-->
                 <option value = "" disabled selected>Pick a progress</option>
                 <option value = "stable">Stable</option>
                 <option value = "improving">Improving</option>
@@ -114,11 +115,11 @@
     
     <div class = "buttons">
         {% block previous_page %}
-
+        <!--This block is used for definining the previous page button which is customised in child's template -->
         {% endblock previous_page %}
 
         {% block next_page %}
-
+        <!--This block is used for definining the next page button which is customised in child's template -->
         {% endblock next_page %}
     </div>
 

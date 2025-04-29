@@ -8,7 +8,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
-        ('accounts', '0002_rename_name_session_session_rename_teams_team_team_and_more'),
+       # ('accounts', '0002_rename_name_session_session_rename_teams_team_team_and_more'),
     ]
 
     operations = [

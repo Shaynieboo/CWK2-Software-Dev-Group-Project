@@ -1,8 +1,8 @@
-{% include "pages/sidepanel.html" %}
+{% include "pages/sidepanel.html" %} <!--Side panel template is inclduded on this page-->
 
 {% block team_css %}
 <style>
-    .page {
+    .page { /* CSS for this page */
         margin-left: 120px;
         padding: 70px;
         background-color: #B9D8F3;
@@ -56,25 +56,25 @@
 </style>
 {% endblock team_css %}
 
-
+<!--Team page content including the labels and drop list with options  -->
 {% block team_content %}
 <div class = "page">
     <h1>Team</h1>
     <h3><b>Select Your Team Below</b></h3>
 
-    {% if messages %}
+    {% if messages %} <!--This block handles the error messages in my code-->
         {% for message in messages %}
             <div class = "error_message">
-                <p>{{message}}</p>
+                <p>{{message}}</p> <!--Error message is displayed here-->
             </div>
         {% endfor %}
     {% endif %}
-    <form method = "POST">
-        {% csrf_token %}
+    <form method = "POST"> <!--Form is used to submit the user's team choices-->
+        {% csrf_token %} <!--Form is used to submit the user's health check choices-->
         <div class = "teamselection">
-            <select name = "team">
+            <select name = "team"> <!--html select element is used for the drop list -->
                 <option value = "" disabled selected>Choose your team</option>
-                <option value = "one">Team 1</option>
+                <option value = "one">Team 1</option> <!--Team options-->
                 <option value = "two">Team 2</option>
                 <option value = "three">Team 3</option>
                 <option value = "four">Team 4</option>
@@ -83,10 +83,10 @@
 
 
         <div class = "buttons">
-            <a href ="{% url 'dashboard' %}" class="backbutton">
+            <a href ="{% url 'dashboard' %}" class="backbutton"> <!--This links directs users back to the dashboard when back button is pressed-->
                 <button type = "button">Back</button>
             </a>
-            <button type = "submit">Next</button>
+            <button type = "submit">Next</button> <!--This directs users to next page and submits the form when the button is pressed -->
         </div>
     </form>
 </div>
