@@ -96,17 +96,13 @@ def card(request, number):
     return render(request, f'cards/card{number}.html', {'number' : number, 'next_card': number + 1})
 
 
-# Summary View
-@login_required
-def summary(request):
-    return render(request, 'summary.html')
 
 
 # Home View (for when users first visit the base URL '/')
 def home_view(request):
     return HttpResponse('<h1>Welcome to the SKY Health Check Platform!</h1><p><a href="/accounts/login/">Login Here</a></p>')
 
-# Settings View
+# Author Mechelle Settings View
 @login_required
 def setting_view(request):
     setting, created = Setting.objects.get_or_create(user=request.user)
@@ -123,3 +119,30 @@ def setting_view(request):
         form = UserSettingForm(instance=setting)
 
     return render(request, 'settings.html', {'form': form})
+
+#Engineer summary Mechelle View
+@login_required
+def summary(request):
+    user = request.user
+
+    # Engineer: Show only their own session/team/settings
+    if user.role == 'engineer':
+        sessions = Session.objects.filter(user=user)
+        teams = Team.objects.filter(user=user)
+        settings = Setting.objects.filter(user=user)
+
+    # Team Leader or higher: Show all users' info
+    elif user.role in ['team_leader', 'dept_leader', 'senior_manager']:
+        sessions = Session.objects.all()
+        teams = Team.objects.all()
+        settings = Setting.objects.all()
+    
+    else:
+        sessions = teams = settings = []
+
+    context = {
+        'sessions': sessions,
+        'teams': teams,
+        'settings': settings
+    }
+    return render(request, 'summary.html', context)
