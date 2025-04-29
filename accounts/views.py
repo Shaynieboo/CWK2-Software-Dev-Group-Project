@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import TeamSelectionForm, SessionSelectionForm, HealthCheckForm, CustomUserCreationForm
 from .models import Team, Session
+from django.http import HttpResponse
 
 #Author: Shayne
 # Sign up view
@@ -14,26 +15,15 @@ def signup_view(request):
             user = form.save()
             login(request, user)  # Log the user in after signup
             messages.success(request, "Account created successfully!")
-            return redirect('role_based_redirect')  # go to smart redirect
+            return redirect('role_based_redirect')  # Smart role-based redirect
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-# Role-based redirect view
+# Role-based redirect view (for now just send everyone to dashboard)
 @login_required
 def role_based_redirect(request):
     return redirect('dashboard')
-    # user = request.user
-    # if user.role == 'engineer':
-    #     return redirect('dashboard')  # you already have this view
-    # elif user.role == 'team_leader':
-    #     return redirect('team')  # TEMPORARY: send to team page for now
-    # elif user.role == 'dept_leader':
-    #     return redirect('summary')  # TEMPORARY: send to summary page for now
-    # elif user.role == 'senior_manager':
-    #     return redirect('summary')  # TEMPORARY: send to summary page
-    # else:
-    #     return redirect('login')  # fallback if role missing
 
 
 # Author: An An
@@ -113,3 +103,11 @@ def summary(request):
 def settings(request):
     return render(request, 'settings.html')
 
+# Card View
+@login_required
+def card(request, number):
+    return render(request, f'cards/card{number}.html')
+
+# Home View (for when users first visit the base URL '/')
+def home_view(request):
+    return HttpResponse('<h1>Welcome to the SKY Health Check Platform!</h1><p><a href="/accounts/login/">Login Here</a></p>')
