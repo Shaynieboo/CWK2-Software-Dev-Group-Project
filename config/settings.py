@@ -3,15 +3,11 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-v1$8sta223qve+m&okr%l114md_vazk=(t+_rk$o_592y!y*lo'
-
-
-DEBUG = False
-
-
+DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
-    'accounts',
+    'accounts',                         #custom user app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,38 +53,29 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
+USE_TZ   = True
 
-USE_TZ = True
-DEBUG = True
-
-STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/'
+# custom user model
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# login/logout redirects
+LOGIN_REDIRECT_URL = '/accounts/dashboard'
+
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+# print password-reset emails to console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
