@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidepanel {
+            width: 200px;
+            height: 100vh;
+            background-color: #f1dff0;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .sidepanel h3 {
+            text-align: center;
+            margin: 0;
+            padding: 20px 0 10px;
+            font-weight: 300;
+            font-size: 24px;
+        }
+
+        .sidepanel ul {
+            margin: 50px 20px;
+            padding: 0;
+        }
+
+        .sidepanel li {
+            margin: 30px 0;
+            list-style: none;
+            position: relative;
+        }
+
+        .sidepanel a {
+            display: flex;
+            align-items: center;
+            color: #112beeaa;
+            text-decoration: none;
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .sidepanel a:hover {
+            text-decoration: underline;
+        }
+
+        .sidepanel a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .active {
+            color: #4913e9c5;
+            text-decoration: underline;
+            position: relative;
+        }
+
+        .active::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: #4913e9c5;
+            border-radius: 2px;
+        }
+
+        .logout,
+        .settings {
+            position: absolute;
+            left: 20px;
+            font-size: 12px;
+        }
+
+        .settings {
+            bottom: 50px;
+        }
+
+        .logout {
+            bottom: 20px;
+        }
+
+        .logout a,
+        .settings a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .logout a:hover,
+        .settings a:hover {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .logout img,
+        .settings img {
+            width: 14px;
+            height: 14px;
+            margin-right: 6px;
+        }
+
+        .page {
+            margin-left: 200px;
+            padding: 40px;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .admin-profile {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .admin-profile img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .admin-profile span {
+            font-weight: bold;
+        }
+
+
+        .page h1 {
+            font-size: 40px;
+            margin: 80px 0 30px;
+        }
+
+        .section {
+            margin-top: 40px;
+        }
+
+        .section-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .add-link {
+            font-size: 14px;
+            text-decoration: none;
+            background-color: #4913e9c5;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .add-link:hover {
+            background-color: #3b0ec2;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 3px rgba(0,0,0,0.1);
+            justify-content: space-between;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-info img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .delete-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .delete-button:hover {
+            opacity: 0.9;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidepanel">
+        <h3>Sky Health</h3>
+        <ul>
+            <li><a href="Dashboard.html" class="active"><img src="dashboard-icon.png" alt="Dashboard"><b>Dashboard</b></a></li>
+            <li><a href="AddDepartment.html"><b>Add Department</b></a></li>
+            <li><a href="AddTeam.html"><b>Add Team</b></a></li>
+            <li><a href="Sessions.html"><b>Sessions</b></a></li>
+        </ul>
+
+        <ul class="settings">
+            <li><a href="Settings.html"><b>Settings</b></a></li>
+        </ul>
+
+        <ul class="logout">
+            <li><a href="logout.html"><b>Log out</b></a></li>
+        </ul>
+    </div>
+
+    <div class="page">
+        <div class="admin-profile" onclick="toggleDropdown(event)">
+            <img src="profile.png" alt="Admin">
+            <span>xxxxx</span>
+            <span>▼</span>
+        </div>
+
+       
+
+        <h1>Dashboard</h1>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>Departments</h2>
+                <a class="add-link" href="AddDepartment.html">+ Add Department</a>
+            </div>
+
+            <div class="item">
+                <div class="item-info">
+                    <img src="profile.png" alt="Profile">
+                    <span>Department 1</span>
+                </div>
+                <a class="delete-button" href="delete.html">Delete</a>
+            </div>
+
+            <div class="item">
+                <div class="item-info">
+                    <img src="profile.png" alt="Profile">
+                    <span>Department 2</span>
+                </div>
+                <a class="delete-button" href="delete.html">Delete</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>Teams</h2>
+                <a class="add-link" href="AddTeam.html">+ Add Team</a>
+            </div>
+
+            <div class="teams-grid">
+                <div class="item">
+                    <div class="item-info">
+                        <img src="profile.png" alt="Profile">
+                        <span>Team 1</span>
+                    </div>
+                    <a class="delete-button" href="delete.html">Delete</a>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <img src="profile.png" alt="Profile">
+                        <span>Team 4</span>
+                    </div>
+                    <a class="delete-button" href="delete.html">Delete</a>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <img src="profile.png" alt="Profile">
+                        <span>Team 2</span>
+                    </div>
+                    <a class="delete-button" href="delete.html">Delete</a>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <img src="profile.png" alt="Profile">
+                        <span>Team 5</span>
+                    </div>
+                    <a class="delete-button" href="delete.html">Delete</a>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <img src="profile.png" alt="Profile">
+                        <span>Team 3</span>
+                    </div>
+                    <a class="delete-button" href="delete.html">Delete</a>
+                </div>
+
+                <div class="item">
+                    <div class="item-info">
+                        <img src="profile.png" alt="Profile">
+                        <span>Team 6</span>
+                    </div>
+                    <a class="delete-button" href="delete.html">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

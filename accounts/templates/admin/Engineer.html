@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Engineers</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f5f5f5;
+        }
+    
+       
+        .sidepanel {
+          width: 220px;
+          height: 100vh;
+          background-color: #f1dff0;
+          position: fixed;
+          top: 0;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          padding-top: 20px;
+        }
+    
+        .sidepanel h3 {
+          text-align: center;
+          font-size: 24px;
+          margin-bottom: 40px;
+          font-weight: 400;
+        }
+    
+        .sidepanel ul {
+          list-style: none;
+          padding: 0 20px;
+          margin: 0;
+          flex-grow: 1;
+        }
+    
+        .sidepanel li {
+          margin: 22px 0;
+        }
+    
+        .sidepanel a {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          color: #112beeaa;
+          font-size: 14px;
+          padding-left: 10px;
+          position: relative;
+          transition: background-color 0.2s ease, color 0.2s ease;
+        }
+    
+        .sidepanel a img {
+          width: 16px;
+          height: 16px;
+          margin-right: 8px;
+        }
+    
+        .sidepanel a:hover {
+          background-color: #e6e6ff;
+          color: #4913e9c5;
+        }
+    
+        .sidepanel .active {
+          color: #4913e9c5;
+          font-weight: bold;
+        }
+    
+        .sidepanel .active::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 4px;
+          background-color: #4913e9c5;
+          border-radius: 2px;
+        }
+    
+
+        .bottom-links {
+          padding: 0 20px;
+          margin-top: auto;
+          margin-bottom: 20px;
+        }
+    
+    
+        .bottom-links img {
+          width: 14px;
+          height: 14px;
+          margin-right: 6px;
+        }
+    
+        .bottom-links a:hover {
+          background-color: #e6e6ff;
+        }
+    
+    
+        .page {
+          margin-left: 220px;
+          padding: 0;
+          position: relative;
+        }
+    
+        
+        .admin-profile {
+          position: absolute;
+          top: 20px;
+          right: 40px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          z-index: 10;
+        }
+    
+        .admin-profile img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+        }
+    
+        .admin-profile span {
+          font-weight: bold;
+          font-size: 14px;
+        }
+    
+       
+        .section {
+          padding: 100px 40px 40px;
+        }
+    
+        .section-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+    
+        .blue-box {
+          background-color: #b9b8e6;
+          padding: 8px 16px;
+          border-radius: 5px;
+          font-weight: bold;
+          font-size: 16px;
+        }
+    
+        .add-button {
+          font-size: 13px;
+          text-decoration: none;
+          background-color: #cdd3fc;
+          color: #333;
+          padding: 6px 12px;
+          border-radius: 5px;
+          transition: background-color 0.2s ease;
+        }
+    
+        .add-button:hover {
+          background-color: #b4bcf5;
+        }
+    
+        
+        .team-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr); 
+          gap: 20px;
+        }
+    
+        .item {
+          background: white;
+          padding: 12px 20px;
+          border-radius: 6px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          transition: background-color 0.2s ease;
+          font-size: 14px; 
+        }
+    
+        .item:hover {
+          background-color: #f0f0f0;
+        }
+    
+        .item span {
+          font-size: 16px;
+        }
+    
+        .delete-button {
+          background-color: #e74c3c;
+          color: white;
+          padding: 4px 10px;
+          font-size: 12px;
+          border-radius: 4px;
+          text-decoration: none;
+          transition: background-color 0.2s ease;
+        }
+    
+        .delete-button:hover {
+          background-color: #c0392b;
+        }
+    
+        
+        .team-grid .item img {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+      </style>
+    </head>
+    <body>
+    
+      <!-- Sidebar -->
+      <div class="sidepanel">
+        <h3>Sky Health</h3>
+        <ul>
+          <li><a href="Dashboard.html"><img src="dashboard-icon.png" alt="Dashboard"><b>Dashboard</b></a></li>
+          <li><a href="User.html"><b>User</b></a></li>
+          <li><a href="Engineer.html"><b>Engineer</b></a></li>
+          <li><a href="TeamLeader.html"><b>Team Leader</b></a></li>
+          <li><a href="SeniorManager.html"><b>Senior Manager</b></a></li>
+          <li><a href="DepartmentLeader.html"><b>Department Leader</b></a></li>
+          <li><a href="VoteCards.html"><b>Vote Cards</b></a></li>
+          <li><a href="Sessions.html"><b>Sessions</b></a></li>
+        </ul>
+    
+        <ul class="settings">
+          <li><a href="Settings.html"><b>Settings</b></a></li>
+        </ul>
+    
+        <ul class="logout">
+          <li><a href="logout.html"><b>Log Out</b></a></li>
+        </ul>
+      </div>
+    
+      
+      <div class="page">
+    
+        
+        <div class="admin-profile" onclick="toggleDropdown()">
+          <img src="profile.png" alt="Admin">
+          <span>xxxxx</span>
+          <span>▼</span>
+        </div>
+    
+        
+    
+        
+        <div class="section">
+          <div class="section-header">
+            <div class="blue-box">Engineers</div>
+            <a class="add-button" href="add.html">+ Add</a>
+          </div>
+    
+          <div class="team-grid">
+            
+            <div class="item">
+              <img src="profile.png" alt="Profile">
+              <span>Engineer 1</span>
+              <a href="delete.html" class="delete-button">Delete</a>
+            </div>
+
+            <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 2</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 3</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 4</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 5</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 6</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 7</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 8</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 9</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                <img src="profile.png" alt="Profile">
+                <span>Engineer 10</span>
+                <a href="delete.html" class="delete-button">Delete</a>
+              </div>
+  
+              <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 11</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+  
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 12</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 13</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 14</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 15</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 16</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 17</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 18</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 19</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 20</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 21</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 22</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 23</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 24</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 25</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 26</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 27</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 28</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 29</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+                <div class="item">
+                  <img src="profile.png" alt="Profile">
+                  <span>Engineer 30</span>
+                  <a href="delete.html" class="delete-button">Delete</a>
+                </div>
+  
+            
+          </div>
+        </div>
+    
+      </div>
+    
+      
+    
+    </body>
+    </html>
+>
