@@ -1,7 +1,7 @@
 from django import forms
 from .models import Team, Session
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import CustomUser , Setting
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -20,3 +20,7 @@ class SessionSelectionForm(forms.ModelForm):
         model = Session
         fields = ['session']
 
+class UserSettingForm(forms.ModelForm):
+    class Meta:
+        model = Setting
+        fields = ['name', 'email','username']  # only editable fields

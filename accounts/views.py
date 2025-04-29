@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import TeamSelectionForm, SessionSelectionForm, CustomUserCreationForm
 from .models import Team, Session
 from django.http import HttpResponse
+from .models import Setting
+from .forms import UserSettingForm
 
 # Sign up view
 def signup_view(request):
@@ -66,10 +68,7 @@ def instructions(request):
 def summary(request):
     return render(request, 'summary.html')
 
-# Settings View
-@login_required
-def settings(request):
-    return render(request, 'settings.html')
+
 
 # Card View
 @login_required
@@ -79,3 +78,21 @@ def card(request, number):
 # Home View (for when users first visit the base URL '/')
 def home_view(request):
     return HttpResponse('<h1>Welcome to the SKY Health Check Platform!</h1><p><a href="/accounts/login/">Login Here</a></p>')
+
+# Settings View
+@login_required
+def setting_view(request):
+    setting, created = Setting.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = UserSettingForm(request.POST, instance=setting)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your settings have been updated successfully!')
+            return redirect('settings')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = UserSettingForm(instance=setting)
+
+    return render(request, 'settings.html', {'form': form})
