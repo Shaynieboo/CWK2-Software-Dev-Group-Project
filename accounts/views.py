@@ -99,14 +99,9 @@ def summary(request):
     return render(request, 'summary.html')
 
 # Settings View
-@login_required
+#@login_required
 def settings(request):
-    return render(request, 'settings.html')
-
-# Card View
-@login_required
-def card(request, number):
-    return render(request, f'cards/card{number}.html')
+    return render(request, 'pages/profile_settings.html')
 
 # Home View (for when users first visit the base URL '/')
 def home_view(request):
