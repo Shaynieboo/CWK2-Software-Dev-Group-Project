@@ -1,7 +1,7 @@
 from django import forms
 from .models import Team, Session, Card
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
+from .models import CustomUser , Setting
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -26,3 +26,8 @@ class HealthCheckForm(forms.ModelForm):
     class Meta:
         model = Card
         fields = ['colour', 'progress']
+        
+class UserSettingForm(forms.ModelForm):
+    class Meta:
+        model = Setting
+        fields = ['name', 'email','username']  # only editable fields
