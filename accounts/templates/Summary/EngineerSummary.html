@@ -10,25 +10,22 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #d9dbf0;
+      background-color:#FFFFFF;
     }
-
     .sidebar {
       width: 25%;
       height: 100%;
-      background-color: #0733849a;
+      background-color: #0CA789;
       color: black;
       position: fixed;
       top: 0;
       left: 0;
       padding-top: 20px;
     }
-
     .sidebar h3 {
       text-align: center;
       margin-bottom: 20px;
     }
-
     .sidebar a {
       display: block;
       color: black;
@@ -37,11 +34,9 @@
       margin: 10px 0;
       border-radius: 5px;
     }
-
     .sidebar a:hover {
       background-color: #a5b7dd;
     }
-
     .logout-link {
       position: absolute;
       bottom: 30px;
@@ -50,39 +45,32 @@
       text-align: left;
       margin-bottom: 20px;
     }
-
     .toprow {
       margin-left: 25%;
       padding: 40px;
       background-color: #f9f9f9;
       min-height: 100vh;
     }
-
-    /* Summary content layout */
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
-
     .header h1 {
       font-size: 28px;
       margin: 0;
     }
-
     .votes-summary {
       font-size: 16px;
       color: purple;
       font-weight: bold;
     }
-
     .progress-section {
       display: flex;
       align-items: center;
       margin: 20px 0;
     }
-
     .progress-bar {
       background-color: #eee;
       border-radius: 10px;
@@ -91,58 +79,61 @@
       flex: 1;
       margin-right: 10px;
     }
-
     .progress-bar div {
       height: 100%;
       width: 100%;
       background-color: purple;
     }
-
     .percentage-label {
       font-size: 14px;
       font-weight: bold;
       color: purple;
     }
-
     .content-layout {
       display: flex;
       gap: 20px;
     }
-
     .left-side {
       display: flex;
       flex-direction: column;
       gap: 20px;
       flex: 3;
     }
-
     .box {
-      background: white;
+      background: #f0f0f3;
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 20px;
       min-height: 150px;
     }
-
-    .right-side {
-      background: white;
+    .right-side-box {
+      background:#f0f0f3;
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 20px;
       flex: 1;
     }
-
-    .chart-title {
+    .box.title{
       font-size: 18px;
       margin-bottom: 10px;
     }
-
-    .box:hover, .right-side:hover {
+    .box:hover, .right-side-box:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transform: translateY(-2px);
       transition: all 0.3s ease;
     }
-
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+    select:focus {
+      outline: none;
+      border-color: #073384;
+    }
   </style>
 </head>
 <body>
@@ -165,8 +156,8 @@
         <div class="votes-summary">Votes Summary</div>
       </div>
       <div class="user">
-        <img src="profile.png" alt="User" style="width: 40px; border-radius: 50%;">
-        <span>Username</span>
+        <img src="" alt="User" style="width: 40px; border-radius: 50%;">
+        <span>{{ request.user.username }}</span>
       </div>
     </div>
 
@@ -176,19 +167,54 @@
     </div>
 
     <div class="content-layout">
+      <!-- Left Side: Sessions and Card Progress -->
       <div class="left-side">
         <div class="box">
           <div class="chart-title">My Summary</div>
-          <!-- Add summary details -->
+          <!-- Dropdown for Sessions -->
+          {% if sessions %}
+          <select id="sessions-dropdown">
+            <option value="" disabled selected>Select a session</option>
+            {% for session in sessions %}
+            <option value="{{ session.id }}">{{ session.session }} - {{ session.user.username }}</option>
+            {% endfor %}
+          </select>
+          {% else %}
+          <p>No sessions available</p>
+          {% endif %}
         </div>
+        
         <div class="box">
           <div class="chart-title">Card Progress</div>
-          <!-- Add card data -->
+          <!-- Dropdown for Cards -->
+          {% if cards %}
+          <select id="cards-dropdown">
+            <option value="" disabled selected>Select a card</option>
+            {% for card in cards %}
+            <option value="{{ card.id }}">Card {{ card.card_number }} - {{ card.colour }} - {{ card.progress }}</option>
+            {% endfor %}
+          </select>
+          {% else %}
+          <p>No cards available</p>
+          {% endif %}
         </div>
       </div>
-      <div class="right-side">
+      
+      <!-- Teams Overview -->
+      <div class="right-side-box">
         <div class="chart-title">Teams Progress Overview</div>
-        <!-- Add chart or team summary -->
+        
+        <!-- Dropdown for Teams -->
+        {% if teams %}
+        <select id="teams-dropdown">
+          <option value="" disabled selected>Select a team</option>
+          {% for team in teams %}
+          <option value="{{ team.id }}">{{ team.team }} - {{ team.user.username }}</option>
+          {% endfor %}
+        </select>
+        {% else %}
+        <p>No teams available</p>
+        {% endif %}
       </div>
     </div>
   </div>

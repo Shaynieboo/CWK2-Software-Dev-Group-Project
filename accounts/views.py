@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import TeamSelectionForm, SessionSelectionForm, HealthCheckForm, CustomUserCreationForm
 from .models import Team, Session
 from django.http import HttpResponse
-from .models import Setting
+from .models import Setting , Card
 from .forms import UserSettingForm
 
 #Author: Shayne
@@ -124,25 +124,25 @@ def setting_view(request):
 @login_required
 def summary(request):
     user = request.user
-
-    # Engineer: Show only their own session/team/settings
     if user.role == 'engineer':
         sessions = Session.objects.filter(user=user)
         teams = Team.objects.filter(user=user)
-        settings = Setting.objects.filter(user=user)
+        cards = Card.objects.filter(user=user)
 
-    # Team Leader or higher: Show all users' info
+
+        #acess to all objects from sessions teams and cards 
     elif user.role in ['team_leader', 'dept_leader', 'senior_manager']:
         sessions = Session.objects.all()
         teams = Team.objects.all()
-        settings = Setting.objects.all()
+        cards = Card.objects.all()
+
     
     else:
-        sessions = teams = settings = []
+        sessions = teams = cards = []
 
     context = {
         'sessions': sessions,
         'teams': teams,
-        'settings': settings
+        'cards': cards,
     }
     return render(request, 'summary.html', context)

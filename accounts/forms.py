@@ -1,7 +1,7 @@
 from django import forms
 from .models import Team, Session, Card
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser , Setting
+from .models import CustomUser , Setting , Card
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -26,7 +26,9 @@ class HealthCheckForm(forms.ModelForm):
     class Meta:
         model = Card
         fields = ['colour', 'progress']
-        
+
+
+#Author Mechelle
 class UserSettingForm(forms.ModelForm):
     class Meta:
         model = Setting
