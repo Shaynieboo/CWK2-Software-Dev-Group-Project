@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
-
+from django.contrib.auth.hashers import make_password
 
 # Author: An An
 class Session(models.Model):
@@ -45,12 +45,23 @@ class CustomUser(AbstractUser):
 
 # Author Mechelle
 class Setting(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #link setting model tocotumuser
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
     name = models.CharField(max_length=50)
     username = models.CharField(max_length=50)
     email = models.EmailField()
+    password = models.CharField(max_length=128)  
+ 
+
+    def save(self, *args, **kwargs): # overrides save and allows to change infromation
+        if self.password: # checks if theres a password there
+            self.password = make_password(self.password) # password get hashed when making new password
+        super().save(*args, **kwargs) #stores the new password
    
 
     def __str__(self):
-        return f"Settings for {self.user.username}"
+        return f" New Settings for {self.user.username}" # settings for user)
+    
 
+
+    
