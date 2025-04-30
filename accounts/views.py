@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login
@@ -46,7 +48,7 @@ def dashboard_view(request):
 
 # Author: An An
 # Team View
-# @login_required
+@login_required
 def team_view(request):
     if request.method == 'POST':
         form = TeamSelectionForm(request.POST)
@@ -64,12 +66,12 @@ def team_view(request):
 
 # Author: An An
 # Instructions View
-# @login_required
+@login_required
 def instructions(request):
     return render(request, 'pages/instructions.html')
 
 # Author: An An
-# @login_required
+@login_required
 def card(request, number):
     if request.method == 'POST': 
         form = HealthCheckForm(request.POST)
@@ -104,7 +106,7 @@ def home_view(request):
 
 # Author Mechelle Settings View
 @login_required
-def setting_view(request):
+def settings_view(request):
     setting, created = Setting.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':

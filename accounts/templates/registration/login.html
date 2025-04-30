@@ -1,13 +1,5 @@
 {% load static %}
-{% if messages %}
-  {% for message in messages %}
-    <div style="color: green;">
-      {{ message }}
-    </div>
-  {% endfor %}
-{% endif %}
-
-
+<!-- Author - Shayne -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,99 +7,112 @@
     <title>User Login</title>
     <style>
         body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-}
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
 
-.container {
-    display: flex;
-    height: 100vh;
-    animation: fadeIn 1s ease-in;
-}
+        .container {
+            display: flex;
+            height: 100vh;
+            animation: fadeIn 1s ease-in;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.left-side {
-    flex: 1;
-    background-color: #a5c8f0;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-}
+        .left-side {
+            flex: 1;
+            background-color: #a5c8f0;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-.left-side img.health-image {
-    width: 150px;
-    margin-bottom: 20px;
-}
+        .left-side img.health-image {
+            width: 150px;
+            margin-bottom: 20px;
+        }
 
-.right-side {
-    flex: 1;
-    background-color: #f5f5f5;
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        .right-side {
+            flex: 1;
+            background-color: #f5f5f5;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.right-side h1 {
-    font-size: 36px;
-    font-weight: bold;
-}
+        .right-side h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
 
-.right-side h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
+        .right-side h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-.form-group {
-    margin-bottom: 20px;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
 
-.login-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #222;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #222;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
 
-.login-btn:hover {
-    background-color: #444;
-}
+        .login-btn:hover {
+            background-color: #444;
+        }
 
-.links {
-    margin-top: 20px;
-    font-size: 14px;
-}
+        .links {
+            margin-top: 20px;
+            font-size: 14px;
+        }
 
-.links a {
-    color: #555;
-    text-decoration: none;
-}
+        .links a {
+            color: #555;
+            text-decoration: none;
+        }
 
-.links a:hover {
-    text-decoration: underline;
-}
+        .links a:hover {
+            text-decoration: underline;
+        }
 
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .message.error {
+            color: red;
+        }
+
+        .message.success {
+            color: green;
+        }
     </style>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
@@ -121,6 +126,14 @@ input[type="password"] {
         <div class="right-side">
             <h1>USER</h1>
             <h2>Log in</h2>
+
+            {% if messages %}
+              {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
 
             <form method="post">
                 {% csrf_token %}
