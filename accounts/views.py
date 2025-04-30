@@ -52,7 +52,7 @@ def team_view(request):
         form = TeamSelectionForm(request.POST)
         if form.is_valid():
             team = form.save(commit = False) #Create instance for team form
-           # team.user = request.user
+            #team.user = request.user
             team.save() # saves team to database and directs user to instructions page
             return redirect('instructions')
         else:
@@ -74,10 +74,10 @@ def card(request, number):
     if request.method == 'POST': 
         form = HealthCheckForm(request.POST)
         if form.is_valid(): # checks if form is valid
-            card = form.save(commit=False)
-           # card.user = request.user
-           # card.session = request.user.session
-           # card.team  = request.user.team
+            #card = form.save(commit=False)
+            #card.user = request.user
+           #card.session = request.user.session
+            #card.team  = request.user.team
             card.card_number = number
             card.save() #saves user choice to database
 
@@ -102,8 +102,11 @@ def card(request, number):
 def home_view(request):
     return HttpResponse('<h1>Welcome to the SKY Health Check Platform!</h1><p><a href="/accounts/login/">Login Here</a></p>')
 
+
+
+
 # Author Mechelle Settings View
-#@login_required
+@login_required
 def setting_view(request):
     setting, created = Setting.objects.get_or_create(user=request.user)
 
@@ -111,17 +114,17 @@ def setting_view(request):
         form = UserSettingForm(request.POST, instance=setting)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your settings have been updated successfully!')
+            messages.success(request, 'Updated Setting')
             return redirect('settings')
         else:
-            messages.error(request, 'Correct the errors below.')
+            messages.error(request, 'ERROR.')
     else:
         form = UserSettingForm(instance=setting)
 
     return render(request, 'pages/settings.html', {'form': form})
 
 #Engineer summary Mechelle View
-#@login_required
+@login_required
 def summary_view(request):
     user = request.user
     if user.role == 'engineer':
@@ -146,3 +149,5 @@ def summary_view(request):
         'cards': cards,
     }
     return render(request, 'pages/summary.html', context)
+
+

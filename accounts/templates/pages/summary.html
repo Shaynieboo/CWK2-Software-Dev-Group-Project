@@ -116,7 +116,6 @@
   <div class="sidebar">
     <h3>SKY Health Care</h3>
     <a href="{% url 'dashboard' %}">Dashboard</a>
-    <a href="#">Card1</a>
     <a href="{% url 'settings' %}" class="active">Settings</a>
     <a href="#">Back</a>
     <a href="{% url 'logout' %}" class="logout-link">Log out</a>
@@ -131,7 +130,7 @@
       </div>
       <div class="user">
         <img src="" alt="User" style="width: 40px; border-radius: 50%;">
-        <span>{{ request.user.username }}</span>
+        <div>{{ request.user.username }}</div>
       </div>
     </div>
 
@@ -156,12 +155,13 @@
         
         <div class="box">
           <div class="box-title">Card Progress</div>
+
           <!-- Dropdown for Cards -->
           {% if cards %}
           <select id="cards-dropdown">
-            <option value="" disabled selected>Select a card</option>
+            <option value="" disabled selected> Select a card</option>
             {% for card in cards %}
-            <option value="{{ card.id }}">Card {{ card.card_number }} - {{ card.colour }} - {{ card.progress }}</option>
+            <option value="{{ card.id }}"> Card {{ card.card_number }} - {{ card.colour }} - {{ card.progress }}</option>
             {% endfor %}
           </select>
           {% else %}

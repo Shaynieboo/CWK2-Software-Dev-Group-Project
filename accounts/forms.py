@@ -32,4 +32,11 @@ class HealthCheckForm(forms.ModelForm):
 class UserSettingForm(forms.ModelForm):
     class Meta:
         model = Setting
-        fields = ['name', 'email','username']  # only editable fields
+        fields = ['name', 'email','username']
+
+    #save
+    def save(self, commit=True):
+        user = super().save(commit=False) # get user from form
+        if commit:
+            user.save()
+        return user  

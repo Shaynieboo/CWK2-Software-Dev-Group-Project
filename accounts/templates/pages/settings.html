@@ -151,27 +151,25 @@
     
     <form method="POST">
       {% csrf_token %}
-      <div class="form-container">
+   
+    
+      <div class="form-container2">
+
         <div>
-          <label for="first-name">First Name</label>
-          <input id="first-name" name="first_name" type="text" placeholder="First Name" value="{{ form.first_name.value}}">
+          <label for="user-name">UserName</label>
+          <input id="user-name" name="user_name" type="text" placeholder="{{ request.user.username}}"value="{{ form.user.value}}">
         </div>
     
         <div>
           <label for="last-name">Last Name</label>
-          <input id="last-name" name="last_name" type="text" placeholder="Last Name" value="{{ form.last_name.value}}">
+          <input id="last-name" name="last_name" type="text" placeholder="{{ request.user.last_name}}" value="{{ form.last_name.value}}">
         </div>
+
       </div>
-    
-      <div class="form-container2">
+
         <div>
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="Email" value="{{ form.email.value}}">
-        </div>
-    
-        <div>
-          <label for="phone-number">Phone Number</label>
-          <input id="phone-number" name="phone_number" type="text" placeholder="Phone number" value="{{ form.phone_number.value}}">
+          <input id="email" name="email" type="email" placeholder="{{ request.user.email }}" value="{{ form.email.value}}">
         </div>
     
         <div>
