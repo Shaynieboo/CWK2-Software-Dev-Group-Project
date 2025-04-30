@@ -3,7 +3,7 @@
 <head>
     <title>Webpage</title>
     <style>
-        /* CSS for the sidepaenl*/
+        /* CSS for the sidepanel*/
         body {
             margin: 0;
         }
@@ -70,9 +70,20 @@
         <li><b>Rating Health</b></li>
     </ul>
 
+    <ul class = "Team">
+        <li><a href="{% url 'team' %}"><b>Team</b></a></li> <!--Link to Teams-->
+    </ul>
+
+    <ul>
+        <li><a href="{% url 'summary' %}"><b>Summary</b></a></li> <!--link to summary-->
+    </ul>
+
+
     <ul class = "settings">
         <li><a href="{% url 'settings' %}"><b>Settings</b></a></li> <!--Link to settings-->
     </ul>
+
+
 
     <ul class = "logout">
         <li><a href="{% url 'logout' %}"><b>Log out</b></a></li> <!--User is logged out and redirected to login page-->

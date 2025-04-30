@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import TeamSelectionForm, SessionSelectionForm, HealthCheckForm, CustomUserCreationForm
 from .models import Team, Session
 from django.http import HttpResponse
-from .models import Setting , Card
+from .models import Setting , Card , CustomUser
 from .forms import UserSettingForm
 
 #Author: Shayne
@@ -54,7 +54,7 @@ def team_view(request):
         form = TeamSelectionForm(request.POST)
         if form.is_valid():
             team = form.save(commit = False) #Create instance for team form
-           # team.user = request.user
+            team.user = request.user
             team.save() # saves team to database and directs user to instructions page
             return redirect('instructions')
         else:
@@ -77,9 +77,9 @@ def card(request, number):
         form = HealthCheckForm(request.POST)
         if form.is_valid(): # checks if form is valid
             card = form.save(commit=False)
-           # card.user = request.user
-           # card.session = request.user.session
-           # card.team  = request.user.team
+            card.user = request.user
+            card.session = request.user.session
+            card.team  = request.user.team
             card.card_number = number
             card.save() #saves user choice to database
 
@@ -104,6 +104,9 @@ def card(request, number):
 def home_view(request):
     return HttpResponse('<h1>Welcome to the SKY Health Check Platform!</h1><p><a href="/accounts/login/">Login Here</a></p>')
 
+
+
+
 # Author Mechelle Settings View
 @login_required
 def settings_view(request):
@@ -113,38 +116,43 @@ def settings_view(request):
         form = UserSettingForm(request.POST, instance=setting)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your settings have been updated successfully!')
+            messages.success(request, 'Updated Setting')
             return redirect('settings')
         else:
-            messages.error(request, 'Please correct the errors below.')
+            messages.error(request, 'ERROR.')
     else:
         form = UserSettingForm(instance=setting)
 
-    return render(request, 'settings.html', {'form': form})
+    return render(request, 'pages/settings.html', {'form': form})
+
 
 #Engineer summary Mechelle View
 @login_required
-def summary(request):
+def summary_view(request):
     user = request.user
     if user.role == 'engineer':
         sessions = Session.objects.filter(user=user)
         teams = Team.objects.filter(user=user)
-        cards = Card.objects.filter(user=user)
+        cards = Card.objects.select_related('session', 'team').filter(user=user)
 
 
         #acess to all objects from sessions teams and cards 
     elif user.role in ['team_leader', 'dept_leader', 'senior_manager']:
         sessions = Session.objects.all()
         teams = Team.objects.all()
-        cards = Card.objects.all()
+        cards = Card.objects.select_related('session', 'team').all()
 
     
     else:
-        sessions = teams = cards = []
+        sessions = []
+        teams = []
+        cards = [] #just empty
 
     context = {
         'sessions': sessions,
         'teams': teams,
         'cards': cards,
     }
-    return render(request, 'summary.html', context)
+    return render(request, 'pages/summary.html', context)
+
+

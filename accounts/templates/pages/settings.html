@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Profile Page</title>
+<title>Settings Page</title>
 <meta name="viewport" .toprow="width=device-width, initial-scale=1">
 
 <head>
@@ -12,8 +12,6 @@
       background-color: #d9dbf0;
      
     }
-
-    
     .sidebar {
       width: 25%;
       height: 100%;
@@ -43,7 +41,6 @@
     .sidebar a:hover {
       background-color: #a5b7dd;
     }
-
 
     .toprow {
       margin-left: 25%;
@@ -81,19 +78,6 @@
       box-sizing: border-box;
     }
 
-
-
-
-
-
-    .form-container2 {
-      display: block;
-      gap: 50px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-
     label {
       font-size: 16px;
       margin-bottom: 10px;
@@ -126,7 +110,7 @@
       background-color: #2566d6;
     }
 
-    .logout-link {
+    .logout_position {
       position: absolute;
       bottom: 30px;
       left: 0;
@@ -142,41 +126,38 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <h3>SKY Health Care</h3>
-    <a href="#">Dashboard</a>
-    <a href="#">Rating Health</a>
-    <a href="#">Summary</a>
-    <a href="#">Back</a>
-    <a href="#" class="logout-link">Log out</a>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'dashboard' %}">Rating Health</a>
+    <a href="{% url 'summary' %} ">Summary</a>
+    <a href="{% url 'dashboard' %}">Back</a>
+    <a href="{% url 'logout' %}" class="logout_position">Log out</a>
   </div>
 
-  <!-- Page.toprow -->
+  <!-- Toprow -->
   <div class="toprow">
     <h1>Settings</h1>
     <img src="profile.jpeg" alt="Profileimg">
     
+    <!-- Form for Settings -->
     <form method="POST">
-      {% csrf_token %}
+      {% csrf_token %} <!-- Security for forms -->
       <div class="form-container">
+
         <div>
-          <label for="first-name">First Name</label>
-          <input id="first-name" name="first_name" type="text" placeholder="First Name" value="{{ form.first_name.value }}">
+          <label for="user-name">UserName</label>
+          <input id="user-name" name="user_name" type="text" placeholder="{{ request.user.username}}"value="{{ form.user.value}}">
         </div>
     
         <div>
           <label for="last-name">Last Name</label>
-          <input id="last-name" name="last_name" type="text" placeholder="Last Name" value="{{ form.last_name.value }}">
+          <input id="last-name" name="last_name" type="text" placeholder="{{ request.user.last_name}}" value="{{ form.last_name.value}}">
         </div>
+
       </div>
-    
-      <div class="form-container2">
+
         <div>
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="Email" value="{{ form.email.value }}">
-        </div>
-    
-        <div>
-          <label for="phone-number">Phone Number</label>
-          <input id="phone-number" name="phone_number" type="text" placeholder="Phone number" value="{{ form.phone_number.value }}">
+          <input id="email" name="email" type="email" placeholder="{{ request.user.email }}" value="{{ form.email.value}}">
         </div>
     
         <div>

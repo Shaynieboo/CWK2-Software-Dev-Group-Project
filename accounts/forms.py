@@ -32,4 +32,5 @@ class HealthCheckForm(forms.ModelForm):
 class UserSettingForm(forms.ModelForm):
     class Meta:
         model = Setting
-        fields = ['name', 'email','username']  # only editable fields
+        fields = ['name', 'email','username']
+    
