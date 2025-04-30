@@ -58,3 +58,4 @@ class Setting(models.Model):
             self.password = make_password(self.password)
         super().save(*args, **kwargs)
 
+# Author: An An

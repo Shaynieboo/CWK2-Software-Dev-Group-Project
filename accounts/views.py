@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import TeamSelectionForm, SessionSelectionForm, HealthCheckForm, CustomUserCreationForm
 from .models import Team, Session
 from django.http import HttpResponse
-from .models import Setting , Card
+from .models import Setting , Card , CustomUser
 from .forms import UserSettingForm
 
 #Author: Shayne
@@ -103,7 +103,7 @@ def home_view(request):
     return HttpResponse('<h1>Welcome to the SKY Health Check Platform!</h1><p><a href="/accounts/login/">Login Here</a></p>')
 
 # Author Mechelle Settings View
-@login_required
+#@login_required
 def setting_view(request):
     setting, created = Setting.objects.get_or_create(user=request.user)
 
@@ -114,27 +114,27 @@ def setting_view(request):
             messages.success(request, 'Your settings have been updated successfully!')
             return redirect('settings')
         else:
-            messages.error(request, 'Please correct the errors below.')
+            messages.error(request, 'Correct the errors below.')
     else:
         form = UserSettingForm(instance=setting)
 
-    return render(request, 'settings.html', {'form': form})
+    return render(request, 'pages/settings.html', {'form': form})
 
 #Engineer summary Mechelle View
-@login_required
-def summary(request):
+#@login_required
+def summary_view(request):
     user = request.user
     if user.role == 'engineer':
         sessions = Session.objects.filter(user=user)
         teams = Team.objects.filter(user=user)
-        cards = Card.objects.filter(user=user)
+        cards = Card.objects.select_related('session', 'team').filter(user=user)
 
 
         #acess to all objects from sessions teams and cards 
     elif user.role in ['team_leader', 'dept_leader', 'senior_manager']:
         sessions = Session.objects.all()
         teams = Team.objects.all()
-        cards = Card.objects.all()
+        cards = Card.objects.select_related('session', 'team').filter(user=user) 
 
     
     else:
@@ -145,4 +145,4 @@ def summary(request):
         'teams': teams,
         'cards': cards,
     }
-    return render(request, 'summary.html', context)
+    return render(request, 'pages/summary.html', context)

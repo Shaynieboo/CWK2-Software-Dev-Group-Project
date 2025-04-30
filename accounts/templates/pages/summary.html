@@ -5,7 +5,7 @@
   <title>Engineer Summary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Sidebar and base layout (reused) */
+  
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -66,29 +66,7 @@
       color: purple;
       font-weight: bold;
     }
-    .progress-section {
-      display: flex;
-      align-items: center;
-      margin: 20px 0;
-    }
-    .progress-bar {
-      background-color: #eee;
-      border-radius: 10px;
-      overflow: hidden;
-      height: 10px;
-      flex: 1;
-      margin-right: 10px;
-    }
-    .progress-bar div {
-      height: 100%;
-      width: 100%;
-      background-color: purple;
-    }
-    .percentage-label {
-      font-size: 14px;
-      font-weight: bold;
-      color: purple;
-    }
+  
     .content-layout {
       display: flex;
       gap: 20px;
@@ -117,11 +95,7 @@
       font-size: 18px;
       margin-bottom: 10px;
     }
-    .box:hover, .right-side-box:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transform: translateY(-2px);
-      transition: all 0.3s ease;
-    }
+    
     select {
       width: 100%;
       padding: 10px;
@@ -141,11 +115,11 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <h3>SKY Health Care</h3>
-    <a href="#">Dashboard</a>
-    <a href="#">Rating Health</a>
-    <a href="#" class="active">Summary</a>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="#">Card1</a>
+    <a href="{% url 'settings' %}" class="active">Settings</a>
     <a href="#">Back</a>
-    <a href="#" class="logout-link">Log out</a>
+    <a href="{% url 'logout' %}" class="logout-link">Log out</a>
   </div>
 
   <!-- Summary Content -->
@@ -161,16 +135,12 @@
       </div>
     </div>
 
-    <div class="progress-section">
-      <div class="progress-bar"><div></div></div>
-      <div class="percentage-label">100%</div>
-    </div>
-
     <div class="content-layout">
       <!-- Left Side: Sessions and Card Progress -->
       <div class="left-side">
         <div class="box">
-          <div class="chart-title">My Summary</div>
+          <div class="box-title">My Summary</div>
+
           <!-- Dropdown for Sessions -->
           {% if sessions %}
           <select id="sessions-dropdown">
@@ -185,7 +155,7 @@
         </div>
         
         <div class="box">
-          <div class="chart-title">Card Progress</div>
+          <div class="box-title">Card Progress</div>
           <!-- Dropdown for Cards -->
           {% if cards %}
           <select id="cards-dropdown">
@@ -202,8 +172,8 @@
       
       <!-- Teams Overview -->
       <div class="right-side-box">
-        <div class="chart-title">Teams Progress Overview</div>
-        
+        <div class="box-title">Teams Progress Overview</div>
+
         <!-- Dropdown for Teams -->
         {% if teams %}
         <select id="teams-dropdown">
