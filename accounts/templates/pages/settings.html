@@ -12,8 +12,6 @@
       background-color: #d9dbf0;
      
     }
-
-    
     .sidebar {
       width: 25%;
       height: 100%;
@@ -43,7 +41,6 @@
     .sidebar a:hover {
       background-color: #a5b7dd;
     }
-
 
     .toprow {
       margin-left: 25%;
@@ -81,14 +78,6 @@
       box-sizing: border-box;
     }
 
-    .form-container2 {
-      display: block;
-      gap: 50px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-
     label {
       font-size: 16px;
       margin-bottom: 10px;
@@ -121,7 +110,7 @@
       background-color: #2566d6;
     }
 
-    .logout-link {
+    .logout_position {
       position: absolute;
       bottom: 30px;
       left: 0;
@@ -138,22 +127,21 @@
   <div class="sidebar">
     <h3>SKY Health Care</h3>
     <a href="{% url 'dashboard' %}">Dashboard</a>
-    <a href="#">Rating Health</a>
+    <a href="{% url 'dashboard' %}">Rating Health</a>
     <a href="{% url 'summary' %} ">Summary</a>
-    <a href="#">Back</a>
-    <a href="#" class="logout-link">Log out</a>
+    <a href="{% url 'dashboard' %}">Back</a>
+    <a href="{% url 'logout' %}" class="logout_position">Log out</a>
   </div>
 
-  <!-- Page.toprow -->
+  <!-- Toprow -->
   <div class="toprow">
     <h1>Settings</h1>
     <img src="profile.jpeg" alt="Profileimg">
     
+    <!-- Form for Settings -->
     <form method="POST">
-      {% csrf_token %}
-   
-    
-      <div class="form-container2">
+      {% csrf_token %} <!-- Security for forms -->
+      <div class="form-container">
 
         <div>
           <label for="user-name">UserName</label>

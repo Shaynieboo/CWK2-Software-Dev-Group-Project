@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Engineer Summary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-  
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color:#FFFFFF;
+      background-color: #FFFFFF;
     }
+
     .sidebar {
       width: 25%;
       height: 100%;
@@ -22,10 +23,12 @@
       left: 0;
       padding-top: 20px;
     }
-    .sidebar h3 {
+
+    .sidebar h1 {
       text-align: center;
       margin-bottom: 20px;
     }
+
     .sidebar a {
       display: block;
       color: black;
@@ -34,9 +37,11 @@
       margin: 10px 0;
       border-radius: 5px;
     }
+
     .sidebar a:hover {
       background-color: #a5b7dd;
     }
+
     .logout-link {
       position: absolute;
       bottom: 30px;
@@ -45,38 +50,44 @@
       text-align: left;
       margin-bottom: 20px;
     }
+
     .toprow {
       margin-left: 25%;
       padding: 40px;
       background-color: #f9f9f9;
       min-height: 100vh;
     }
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
+
     .header h1 {
       font-size: 28px;
       margin: 0;
     }
+
     .votes-summary {
       font-size: 16px;
       color: purple;
       font-weight: bold;
     }
-  
-    .content-layout {
+
+    .content {
       display: flex;
       gap: 20px;
     }
+
     .left-side {
       display: flex;
       flex-direction: column;
       gap: 20px;
       flex: 3;
     }
+
     .box {
       background: #f0f0f3;
       border: 1px solid #ccc;
@@ -84,18 +95,20 @@
       padding: 20px;
       min-height: 150px;
     }
+
     .right-side-box {
-      background:#f0f0f3;
+      background: #f0f0f3;
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 20px;
       flex: 1;
     }
-    .box.title{
+
+    .box.title {
       font-size: 18px;
       margin-bottom: 10px;
     }
-    
+
     select {
       width: 100%;
       padding: 10px;
@@ -104,21 +117,23 @@
       border: 1px solid #ccc;
       background-color: #f9f9f9;
     }
+
     select:focus {
       outline: none;
       border-color: #073384;
     }
   </style>
 </head>
+
 <body>
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <h3>SKY Health Care</h3>
+    <h1>SKY Health Care</h1>
     <a href="{% url 'dashboard' %}">Dashboard</a>
     <a href="{% url 'settings' %}" class="active">Settings</a>
-    <a href="#">Back</a>
-    <a href="{% url 'logout' %}" class="logout-link">Log out</a>
+    <a href="{% url 'dashboard' %}">Back</a>
+    <a href= "{% url 'logout' %}" class="logout-link">Log out</a>
   </div>
 
   <!-- Summary Content -->
@@ -129,21 +144,21 @@
         <div class="votes-summary">Votes Summary</div>
       </div>
       <div class="user">
-        <img src="" alt="User" style="width: 40px; border-radius: 50%;">
+        <img src="profile.jpeg" alt="User" style="width: 40px; border-radius: 50%;">
         <div>{{ request.user.username }}</div>
       </div>
     </div>
 
-    <div class="content-layout">
+    <div class="content">
       <!-- Left Side: Sessions and Card Progress -->
       <div class="left-side">
         <div class="box">
-          <div class="box-title">My Summary</div>
+          <div class="box-title">My Summary </div>
 
           <!-- Dropdown for Sessions -->
           {% if sessions %}
           <select id="sessions-dropdown">
-            <option value="" disabled selected>Select a session</option>
+            <option>Select a session</option>
             {% for session in sessions %}
             <option value="{{ session.id }}">{{ session.session }} - {{ session.user.username }}</option>
             {% endfor %}
@@ -152,16 +167,17 @@
           <p>No sessions available</p>
           {% endif %}
         </div>
-        
+
         <div class="box">
           <div class="box-title">Card Progress</div>
 
           <!-- Dropdown for Cards -->
           {% if cards %}
           <select id="cards-dropdown">
-            <option value="" disabled selected> Select a card</option>
+            <option> Select a card</option>
             {% for card in cards %}
-            <option value="{{ card.id }}"> Card {{ card.card_number }} - {{ card.colour }} - {{ card.progress }}</option>
+            <option value="{{ card.id }}"> Card {{ card.card_number }} - {{ card.colour }} - {{ card.progress }}
+            </option>
             {% endfor %}
           </select>
           {% else %}
@@ -169,7 +185,7 @@
           {% endif %}
         </div>
       </div>
-      
+
       <!-- Teams Overview -->
       <div class="right-side-box">
         <div class="box-title">Teams Progress Overview</div>
@@ -177,7 +193,7 @@
         <!-- Dropdown for Teams -->
         {% if teams %}
         <select id="teams-dropdown">
-          <option value="" disabled selected>Select a team</option>
+          <option>Select a team</option>
           {% for team in teams %}
           <option value="{{ team.id }}">{{ team.team }} - {{ team.user.username }}</option>
           {% endfor %}
@@ -190,4 +206,5 @@
   </div>
 
 </body>
+
 </html>
