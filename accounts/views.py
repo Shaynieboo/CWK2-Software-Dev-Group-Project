@@ -52,7 +52,7 @@ def team_view(request):
         form = TeamSelectionForm(request.POST)
         if form.is_valid():
             team = form.save(commit = False) #Create instance for team form
-            #team.user = request.user
+            team.user = request.user
             team.save() # saves team to database and directs user to instructions page
             return redirect('instructions')
         else:
@@ -74,10 +74,10 @@ def card(request, number):
     if request.method == 'POST': 
         form = HealthCheckForm(request.POST)
         if form.is_valid(): # checks if form is valid
-            #card = form.save(commit=False)
-            #card.user = request.user
-           #card.session = request.user.session
-            #card.team  = request.user.team
+            card = form.save(commit=False)
+            card.user = request.user
+            card.session = request.user.session
+            card.team  = request.user.team
             card.card_number = number
             card.save() #saves user choice to database
 
@@ -123,6 +123,7 @@ def setting_view(request):
 
     return render(request, 'pages/settings.html', {'form': form})
 
+
 #Engineer summary Mechelle View
 @login_required
 def summary_view(request):
@@ -137,11 +138,13 @@ def summary_view(request):
     elif user.role in ['team_leader', 'dept_leader', 'senior_manager']:
         sessions = Session.objects.all()
         teams = Team.objects.all()
-        cards = Card.objects.select_related('session', 'team').filter(user=user) 
+        cards = Card.objects.select_related('session', 'team').all()
 
     
     else:
-        sessions = teams = cards = []
+        sessions = []
+        teams = []
+        cards = [] #just empty
 
     context = {
         'sessions': sessions,
